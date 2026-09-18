@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "rbb.policy.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "task": {
+      "const": "benign_block_handover"
+    },
+    "purpose": {
+      "const": "handover_evaluation"
+    },
+    "required_role": {
+      "const": "lab_operator"
+    },
+    "require_execution": {
+      "const": true
+    },
+    "require_complete": {
+      "const": true
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "task",
+    "purpose",
+    "required_role",
+    "require_execution",
+    "require_complete"
+  ]
+}

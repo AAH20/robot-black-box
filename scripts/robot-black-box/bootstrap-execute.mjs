@@ -1,0 +1,16 @@
+import {mkdtempSync,cpSync,rmSync,readFileSync,writeFileSync,existsSync,mkdirSync} from 'node:fs';
+import {join,resolve} from 'node:path';
+import {tmpdir} from 'node:os';
+import {createHash} from 'node:crypto';
+import {spawnSync} from 'node:child_process';
+import {exportPortable} from './portable-export.mjs';
+import {inventory} from './portable-review.mjs';
+const sha=b=>createHash('sha256').update(b).digest('hex'),t=mkdtempSync(join(tmpdir(),'rbb-bootstrap-execution-')),out=resolve('examples/robot-black-box-portable/executed'),cases=[];
+try{const assembly=join(t,'assembly'),clean=join(t,'clean'),tool=join(t,'reviewer-owned-bootstrap.mjs');exportPortable(assembly);cpSync(assembly,clean,{recursive:true});rmSync(assembly,{recursive:true});writeFileSync(tool,readFileSync(resolve('scripts/robot-black-box/portable-bootstrap.mjs')));const pin=sha(readFileSync(join(clean,'package-manifest.json')));
+ const run=(name,p,expected)=>{const r=spawnSync(process.execPath,[tool,p,...(expected?[expected]:[])],{cwd:tmpdir(),encoding:'utf8'});if(!r.stdout)throw Error(r.stderr);const report=JSON.parse(r.stdout);cases.push({name,bootstrap_pid:r.pid,exit_status:r.status,report});return report;};
+ const first=run('clean_detached',clean,pin);if(first.review?.cases.length!==6||!first.included_code_executed)throw Error('BASELINE_FAILED');
+ for(const type of ['tool','evidence']){const p=join(t,'attack-'+type),sentinel=join(t,'sentinel-'+type);cpSync(clean,p,{recursive:true});writeFileSync(join(p,'scripts/robot-black-box/portable-review.mjs'),`import {writeFileSync} from 'node:fs';writeFileSync(${JSON.stringify(sentinel)},'executed');console.log('{}');`);if(type==='evidence')writeFileSync(join(p,'evidence/cases/declared_baseline/events.ndjson'),'coherent transport forgery');const mfile=join(p,'package-manifest.json'),m=JSON.parse(readFileSync(mfile));m.files=inventory(p);writeFileSync(mfile,JSON.stringify(m));const report=run('coherent_'+type+'_manifest_rewrite',p,pin);if(report.included_code_executed||existsSync(sentinel)||!report.errors.includes('EXTERNAL_PIN_MISMATCH'))throw Error('ATTACK_NOT_REJECTED');cases.at(-1).benign_sentinel_absent=true;}
+ for(const [name,expected] of [['wrong_pin','0'.repeat(64)],['absent_pin',null]])if(run(name,clean,expected).included_code_executed)throw Error('PIN_GATE_BYPASSED');
+ const recovered=join(t,'recovered');cpSync(clean,recovered,{recursive:true});if(run('clean_copy_recovery',recovered,pin).review?.cryptographic_integrity!=='valid')throw Error('RECOVERY_FAILED');
+ mkdirSync(out,{recursive:true});writeFileSync(join(out,'bootstrap-execution.json'),JSON.stringify({schema:'rbb.bootstrap.execution.v1',at:new Date().toISOString(),pid:process.pid,expected_manifest_sha256:pin,trusted_bootstrap_sha256:sha(readFileSync(tool)),pin_origin:'same_host_demo_generated_not_independently_obtained',original_assembly_removed:true,bootstrap_copied_outside_package:true,cases,limits:'mechanism test only; no external pin distribution, enrollment, custody or online freshness'},null,2)+'\n');console.log('Six fresh bootstrap processes: baseline, two coherent rewrites, wrong/absent pin and clean recovery verified.');
+}finally{rmSync(t,{recursive:true,force:true});}

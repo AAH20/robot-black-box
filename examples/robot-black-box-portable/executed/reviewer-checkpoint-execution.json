@@ -1,0 +1,320 @@
+{
+  "accepted_revision": 2,
+  "actual_older_database_replacement": true,
+  "at": "2026-09-18T12:03:26.372Z",
+  "bootstrap_pid": 22012,
+  "checkpoint_retained_outside_reviewer_database": true,
+  "latest_checkpoint_sequence": 4,
+  "limits": "separate directory/key/process on same host; replacing every pin/checkpoint defeats local protection; no automatic state repair",
+  "original_public_package_preserved": true,
+  "schema": "rbb.reviewer.checkpoint.execution.v1",
+  "steps": [
+    {
+      "error": "",
+      "name": "checkpoint_one",
+      "pid": 21997,
+      "report": {
+        "checkpoint_digest": "346e5a52bf7b0ea2e77f205c0541ad6ab3b96d175e4890fab019645707939a44",
+        "idempotent": false,
+        "record": {
+          "authentication": {
+            "algorithm": "ed25519",
+            "event_digest": "11bd572d12599269ddd2e4f23886c740a6a8c2d7888d5a59f629f372cda92909",
+            "key_id": "reviewer-checkpoint-signer",
+            "signature": "nZW0BOXBZQfh4VE+lSvuaQHkxRmGW+f/JTyMyMZvPfu+iobxe9N2eFKQ1g9EZo+vUOHFSXpgA9IWxvQJ84HCBA=="
+          },
+          "checkpoint_sequence": 1,
+          "expires_at": "2026-09-18T13:03:25.712Z",
+          "issued_at": "2026-09-18T12:03:25.715Z",
+          "issuer": "reviewer-checkpoint-signer",
+          "previous_checkpoint_digest": null,
+          "profile": {
+            "authority_fingerprint": "3e09bb3753b1ee28aee13b3f0f3a13c10d9aa28b5739ae77c9c0d88eff07a3cb",
+            "initial_minimum_revision": 1,
+            "profile_id": "reviewer-checkpoint-profile",
+            "purpose": "investigation_review",
+            "tenant": "tenant-a"
+          },
+          "revision": 1,
+          "schema": "rbb.reviewer.checkpoint.v1",
+          "scope": "separately_retained_checkpoint_same_host_demo",
+          "trust_digest": "c87d3327b8a9b76d2ba8b58b6e7f021c546757f75c5d03572f4459ce5e1daa1d"
+        }
+      },
+      "status": 0
+    },
+    {
+      "error": "",
+      "name": "advance_floor",
+      "pid": 21999,
+      "report": {
+        "freshness": "valid_local_signed_snapshot_not_online_attested",
+        "idempotent": false,
+        "keys": {
+          "custodian-local-separate": {
+            "public_key": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAKWo4Fwf5+dOgHPR+Bod6+9UPoll4IhzaMhroeqKVPdI=\n-----END PUBLIC KEY-----\n",
+            "purposes": [
+              "investigation_review"
+            ],
+            "revoked": false,
+            "tenants": [
+              "tenant-a"
+            ]
+          }
+        },
+        "profile": {
+          "authority_fingerprint": "3e09bb3753b1ee28aee13b3f0f3a13c10d9aa28b5739ae77c9c0d88eff07a3cb",
+          "initial_minimum_revision": 1,
+          "profile_id": "reviewer-checkpoint-profile",
+          "purpose": "investigation_review",
+          "tenant": "tenant-a"
+        },
+        "revision": 2,
+        "trust_digest": "5c96f1f4aba12d615bddee385aa980c1c203fa78490cff78d00fb06e008128a7"
+      },
+      "status": 0
+    },
+    {
+      "error": "",
+      "name": "checkpoint_two",
+      "pid": 22000,
+      "report": {
+        "checkpoint_digest": "3c150215f0b6b0c404a5c47b2794b1314a23a194da4302aeeef2799782ea8a0c",
+        "idempotent": false,
+        "record": {
+          "authentication": {
+            "algorithm": "ed25519",
+            "event_digest": "c797a90388c76720860cc971a311a3a91a55dee630aea0665e1a0a7fa88a47d9",
+            "key_id": "reviewer-checkpoint-signer",
+            "signature": "fINpIBkqTE3b9zvGM2p4698cU/4NSTgnGLsMqW3YI6v63MYoMgmjXnlmkIw8Wc68nYNHLSAFbTlR4tixN0GZDw=="
+          },
+          "checkpoint_sequence": 2,
+          "expires_at": "2026-09-18T13:03:25.798Z",
+          "issued_at": "2026-09-18T12:03:25.801Z",
+          "issuer": "reviewer-checkpoint-signer",
+          "previous_checkpoint_digest": "346e5a52bf7b0ea2e77f205c0541ad6ab3b96d175e4890fab019645707939a44",
+          "profile": {
+            "authority_fingerprint": "3e09bb3753b1ee28aee13b3f0f3a13c10d9aa28b5739ae77c9c0d88eff07a3cb",
+            "initial_minimum_revision": 1,
+            "profile_id": "reviewer-checkpoint-profile",
+            "purpose": "investigation_review",
+            "tenant": "tenant-a"
+          },
+          "revision": 2,
+          "schema": "rbb.reviewer.checkpoint.v1",
+          "scope": "separately_retained_checkpoint_same_host_demo",
+          "trust_digest": "5c96f1f4aba12d615bddee385aa980c1c203fa78490cff78d00fb06e008128a7"
+        }
+      },
+      "status": 0
+    },
+    {
+      "error": "",
+      "name": "interrupted_before_commit",
+      "pid": 22001,
+      "report": null,
+      "status": 94
+    },
+    {
+      "error": "",
+      "name": "retry_before_commit",
+      "pid": 22002,
+      "report": {
+        "checkpoint_digest": "6a100884b6e2141987d9a2771b14f061327ed3625be892836fc4c28f6a716729",
+        "idempotent": false,
+        "record": {
+          "authentication": {
+            "algorithm": "ed25519",
+            "event_digest": "7ecd811f1c047a6de9fce5e9e2ff528a0635bb2db970019d427f2dbc965a6d70",
+            "key_id": "reviewer-checkpoint-signer",
+            "signature": "J3EjcIFY1eH0qm0///lS4FuAzKCQE0s8K9NM8ey0Bx0lyMq27rA4UZxqm5dFjbTF9/XgjT5Yrsr4TFU+K9ZiBg=="
+          },
+          "checkpoint_sequence": 3,
+          "expires_at": "2026-09-18T13:03:25.878Z",
+          "issued_at": "2026-09-18T12:03:25.880Z",
+          "issuer": "reviewer-checkpoint-signer",
+          "previous_checkpoint_digest": "3c150215f0b6b0c404a5c47b2794b1314a23a194da4302aeeef2799782ea8a0c",
+          "profile": {
+            "authority_fingerprint": "3e09bb3753b1ee28aee13b3f0f3a13c10d9aa28b5739ae77c9c0d88eff07a3cb",
+            "initial_minimum_revision": 1,
+            "profile_id": "reviewer-checkpoint-profile",
+            "purpose": "investigation_review",
+            "tenant": "tenant-a"
+          },
+          "revision": 2,
+          "schema": "rbb.reviewer.checkpoint.v1",
+          "scope": "separately_retained_checkpoint_same_host_demo",
+          "trust_digest": "5c96f1f4aba12d615bddee385aa980c1c203fa78490cff78d00fb06e008128a7"
+        }
+      },
+      "status": 0
+    },
+    {
+      "error": "",
+      "name": "interrupted_after_commit",
+      "pid": 22003,
+      "report": null,
+      "status": 93
+    },
+    {
+      "error": "",
+      "name": "retry_after_commit",
+      "pid": 22004,
+      "report": {
+        "checkpoint_digest": "17e020211e476a6cb52e0aef62cd2d74fefc1fc8f4018bcd7af425fe848b4edd",
+        "idempotent": true,
+        "record": {
+          "authentication": {
+            "algorithm": "ed25519",
+            "event_digest": "7d9a42f9398e8f10a7b6a820995bdbec5775962c12c8d5d6413b4b97d238441a",
+            "key_id": "reviewer-checkpoint-signer",
+            "signature": "IYHfpOxQtCl0lyf1eOsrt6Px0NBdjK7cOXFx3gC3ei3pqjw6nmO8K3MW7X72pqtAIyT0CXkLE3nWZl602Tk1AA=="
+          },
+          "checkpoint_sequence": 4,
+          "expires_at": "2026-09-18T13:03:25.917Z",
+          "issued_at": "2026-09-18T12:03:25.919Z",
+          "issuer": "reviewer-checkpoint-signer",
+          "previous_checkpoint_digest": "6a100884b6e2141987d9a2771b14f061327ed3625be892836fc4c28f6a716729",
+          "profile": {
+            "authority_fingerprint": "3e09bb3753b1ee28aee13b3f0f3a13c10d9aa28b5739ae77c9c0d88eff07a3cb",
+            "initial_minimum_revision": 1,
+            "profile_id": "reviewer-checkpoint-profile",
+            "purpose": "investigation_review",
+            "tenant": "tenant-a"
+          },
+          "revision": 2,
+          "schema": "rbb.reviewer.checkpoint.v1",
+          "scope": "separately_retained_checkpoint_same_host_demo",
+          "trust_digest": "5c96f1f4aba12d615bddee385aa980c1c203fa78490cff78d00fb06e008128a7"
+        }
+      },
+      "status": 0
+    },
+    {
+      "error": "LOCAL_STATE_CHECKPOINT_MISMATCH\n",
+      "name": "older_database_denied",
+      "pid": 22005,
+      "report": null,
+      "status": 2
+    },
+    {
+      "error": "CHECKPOINT_DIGEST_PIN_MISMATCH\n",
+      "name": "older_checkpoint_denied",
+      "pid": 22006,
+      "report": null,
+      "status": 2
+    },
+    {
+      "error": "CHECKPOINT_DIGEST_PIN_MISMATCH\n",
+      "name": "tampered_checkpoint_denied",
+      "pid": 22007,
+      "report": null,
+      "status": 2
+    },
+    {
+      "error": "CHECKPOINT_SIGNER_PIN_MISMATCH\n",
+      "name": "wrong_signer_denied",
+      "pid": 22008,
+      "report": null,
+      "status": 2
+    },
+    {
+      "error": "",
+      "name": "custody_acceptance",
+      "pid": 22009,
+      "report": {
+        "idempotent": false,
+        "receipt": {
+          "acceptance_id": "acceptance-public-001",
+          "accepted_at": "2026-09-18T12:03:26.122Z",
+          "authentication": {
+            "algorithm": "ed25519",
+            "event_digest": "76eec02538670f152d0d0c3b5935346f3d6a648ce0b99116912532c9ae1eacf9",
+            "key_id": "custodian-local-separate",
+            "signature": "8PhDeny1gfVIMDT4g0PDxl9U7k1Yifq9KD0uifQvS2ndovVPeGVmE0hKcIpptDGz5BiiDSBTlYMSrx2Mp5P+DA=="
+          },
+          "custody": "separate_local_key_database_process_same_host",
+          "grant_digest": "5d3434333afd6f8a792dbe2fa3979998270edbc33300b10c43cbe1e9f7209932",
+          "inventory_digest": "6642fca75b1cbdc5208b17d07952d930045c903e173b66ba7bfc526c44fbd191",
+          "issuer": "custodian-local-separate",
+          "manifest_digest": "6fd0596ca965543f794984f0b25263cff1a5fd6ac9cccd53d814c3ce13129be5",
+          "purpose": "investigation_review",
+          "schema": "rbb.custody.acceptance.v1",
+          "scope": "public_synthetic_portable_package_local_only",
+          "tenant": "tenant-a"
+        }
+      },
+      "status": 0
+    },
+    {
+      "error": "",
+      "name": "custody_backup",
+      "pid": 22010,
+      "report": {
+        "idempotent": false,
+        "receipt": {
+          "acceptance_id": "acceptance-public-001",
+          "acceptance_receipt_digest": "c19c5d3c00628e40d4280b2c2057905e8af16222994582d3e121a5e1189a30a1",
+          "authentication": {
+            "algorithm": "ed25519",
+            "event_digest": "8072e6bfb8fdcf78c3dd8ea239f2cc8f3ae10480b8499a9818500ca37ec7144a",
+            "key_id": "custodian-local-separate",
+            "signature": "hRNRazFg4SWpeekph6zzvFQX0oWHJdRqncVqNDbGLoCTEqL6HNWMFboft5Q7qkTa0QvDSApRWfOjIAl+GPunAw=="
+          },
+          "backup_id": "checkpoint-recovery-backup",
+          "created_at": "2026-09-18T12:03:26.205Z",
+          "database_bytes": 192512,
+          "database_digest": "73ff4a689574f45faa8ebb1bcffa95d268b7590fd2b3f274a39eb99681a172e8",
+          "intent_digest": "9ecc91e49c2ade98e43bb57c3c7a03ffa96de7aa18be019f4b69ac5395c124a6",
+          "issuer": "custodian-local-separate",
+          "manifest_digest": "6fd0596ca965543f794984f0b25263cff1a5fd6ac9cccd53d814c3ce13129be5",
+          "purpose": "investigation_review",
+          "schema": "rbb.custody.backup.v1",
+          "scope": "public_synthetic_portable_package_local_only",
+          "tenant": "tenant-a"
+        },
+        "receipt_digest": "9cec44bd45d4a2af10d72e05d9537e246f520e96a1161438e26cf1f5670c174a"
+      },
+      "status": 0
+    },
+    {
+      "error": "",
+      "name": "clean_checkpoint_recovery",
+      "pid": 22011,
+      "report": {
+        "acceptance_receipt_verified": true,
+        "backup_receipt_verified": true,
+        "checkpoint_verified": true,
+        "external_checkpoint_freshness": "reviewer_supplied_pin_not_online_attested",
+        "floor_committed_before_recovery": true,
+        "online_freshness": "unknown",
+        "package_path": "<local-runtime-path-redacted> 2/GRC_Claw/.rbb/reviewer-checkpoint-final/recovered/package",
+        "private_key_required": false,
+        "receipt": {
+          "acceptance_id": "acceptance-public-001",
+          "accepted_at": "2026-09-18T12:03:26.122Z",
+          "authentication": {
+            "algorithm": "ed25519",
+            "event_digest": "76eec02538670f152d0d0c3b5935346f3d6a648ce0b99116912532c9ae1eacf9",
+            "key_id": "custodian-local-separate",
+            "signature": "8PhDeny1gfVIMDT4g0PDxl9U7k1Yifq9KD0uifQvS2ndovVPeGVmE0hKcIpptDGz5BiiDSBTlYMSrx2Mp5P+DA=="
+          },
+          "custody": "separate_local_key_database_process_same_host",
+          "grant_digest": "5d3434333afd6f8a792dbe2fa3979998270edbc33300b10c43cbe1e9f7209932",
+          "inventory_digest": "6642fca75b1cbdc5208b17d07952d930045c903e173b66ba7bfc526c44fbd191",
+          "issuer": "custodian-local-separate",
+          "manifest_digest": "6fd0596ca965543f794984f0b25263cff1a5fd6ac9cccd53d814c3ce13129be5",
+          "purpose": "investigation_review",
+          "schema": "rbb.custody.acceptance.v1",
+          "scope": "public_synthetic_portable_package_local_only",
+          "tenant": "tenant-a"
+        },
+        "restored_files": 47,
+        "retained_checkpoint_sequence": 4,
+        "retained_revision": 2,
+        "reviewer_profile": "reviewer-checkpoint-profile"
+      },
+      "status": 0
+    }
+  ]
+}

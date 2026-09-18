@@ -1,0 +1,12 @@
+import {readFileSync} from 'node:fs';
+import {resolve,join} from 'node:path';
+import {spawnSync} from 'node:child_process';
+import {authorizeContext} from '../../packages/robot-black-box-governance/src/context-access.mjs';
+import {canonical,digest,signed,authenticate} from '../../packages/robot-black-box-contract/src/index.mjs';
+import {localKey,atomicWrite} from '../../packages/robot-black-box-recorder/src/index.mjs';
+const root=resolve(process.argv[2]??'.rbb/cognee-semantic-verified');const execution=JSON.parse(readFileSync(join(root,'execution.json'),'utf8'));const trust=JSON.parse(readFileSync(join(root,'custody/trust.json'),'utf8'));
+authorizeContext(execution.grant,trust,{tenant:'tenant-a',role:'lab_operator',purpose:'governance_evaluation'},{at:new Date().toISOString(),source_id:'semantic-review',operation:'retrieve'});
+const r=spawnSync(resolve('.rbb/cognee-runtime/bin/python'),['scripts/robot-black-box/cognee-residue-audit.py',join(root,'runtime')],{encoding:'utf8',timeout:30000,maxBuffer:1024*1024});if(r.status!==0)throw Error('RESIDUE_AUDIT_FAILED: '+r.stderr);
+const receipt=JSON.parse(r.stdout);atomicWrite(join(root,'residue-audit-probe.json'),canonical(receipt));if(!receipt.historical_text_digests.includes(execution.ingest.source_digest))throw Error('HISTORICAL_SOURCE_DIGEST_MISSING');
+const key=localKey(join(root,'custody/producer-keys'),'producer-local');const envelope=signed({schema:'rbb.context.deletion.receipt.v1',receipt,receipt_digest:digest(canonical(receipt)),custody:'same-machine producer; standalone receipt not witness-anchored'},key.keyId,key.privateKey,'CONTEXT-DELETION');authenticate(envelope,trust.producers,'CONTEXT-DELETION');
+atomicWrite(join(root,'deletion-residue-receipt.json'),canonical(envelope));atomicWrite('examples/robot-black-box-governance/executed/cognee-deletion-residue-receipt.json',canonical(envelope));console.log(JSON.stringify(receipt,null,2));

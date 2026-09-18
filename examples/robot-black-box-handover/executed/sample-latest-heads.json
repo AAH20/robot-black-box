@@ -1,0 +1,107 @@
+{
+  "demo-H0": {
+    "authentication": {
+      "algorithm": "ed25519",
+      "event_digest": "f4f1e610a16b795a13adec324e167830f4fec80ee29695f95bd526c9b5097194",
+      "key_id": "witness-local",
+      "signature": "nrd3EhdwjrB6V4WG2jCTb4gEXmOMtLxWlb4n2paphF6r356GOLHL/BDAvU4KZlJrOuyx+EIQYNe1ZFev0DXrCg=="
+    },
+    "checkpoint_digest": "872bbb6a4bd91c597497103f61d5601a19c5967b4dbdce6e3c6f22e48dfdad1c",
+    "custody": "local_separate_db_same_machine",
+    "head_digest": "32f9d38edd309c48a221f4f535040056d29c3f90efb552dbd69a38cc318ee16f",
+    "observed_at": "2026-09-17T16:12:59.791Z",
+    "run_id": "demo-H0",
+    "schema": "rbb.witness.local.v1",
+    "sequence": 6
+  },
+  "demo-H1": {
+    "authentication": {
+      "algorithm": "ed25519",
+      "event_digest": "99da988b19b60f0bdde8c457cff9a199f6df942d6ae6adbda4d3ca8d16047132",
+      "key_id": "witness-local",
+      "signature": "VbdlKMTYgrdv+alcWFTAyM6VcupQU1S1d4ANyqcMPqgcBr6wqSoDcnZwVYN5pePlYXnrKCL7HWMDQObaRssLDA=="
+    },
+    "checkpoint_digest": "33e4176b90424baea60e4e74de1ec2cadcf399f26c6b6eb2e6550bfccd527b33",
+    "custody": "local_separate_db_same_machine",
+    "head_digest": "58503e31e9844f0886d252fddbdf0b98ec5cac3d3787611ec7297e2fed26ec41",
+    "observed_at": "2026-09-17T16:12:59.836Z",
+    "run_id": "demo-H1",
+    "schema": "rbb.witness.local.v1",
+    "sequence": 6
+  },
+  "demo-H2": {
+    "authentication": {
+      "algorithm": "ed25519",
+      "event_digest": "cbbdb700e8e66b977b7a08cc7f5ce08b886ff324377c2f57eb49a5161e6f5fee",
+      "key_id": "witness-local",
+      "signature": "OkZ/zBGpbbfVZXk+ECx8wTdMfB/6wIcCSvFd3nTyw+4UqkWoH36mmLuVVQiky3Id6F5NbmBWlVwm+WvNAwMHCQ=="
+    },
+    "checkpoint_digest": "8ced8b714f0123a8cb33f1347e8098811097f613cf713d4c9139c34972edac16",
+    "custody": "local_separate_db_same_machine",
+    "head_digest": "3c7dba729d2bb46337d648617fb29be2943145a526931617ac9191e4a4e0dfa6",
+    "observed_at": "2026-09-17T16:12:59.886Z",
+    "run_id": "demo-H2",
+    "schema": "rbb.witness.local.v1",
+    "sequence": 7
+  },
+  "demo-H3": {
+    "authentication": {
+      "algorithm": "ed25519",
+      "event_digest": "a74a50b5bc0d87c862046d87dc440f903b3026241a20cdcbcbcc8f0acfa1734e",
+      "key_id": "witness-local",
+      "signature": "nR3A+QFwfFPFyeXDGT6eEgqo888QPAyBEemRm2DkPtYr+5322CQdemNxYDGrOuJ1znxUufkJmaFWjKedVO5ACQ=="
+    },
+    "checkpoint_digest": "25b6fe7aa2e09e38b91d4a7267491ab1b4f77c8a8afcf08e44612e331b366885",
+    "custody": "local_separate_db_same_machine",
+    "head_digest": "42fc055d3d1e3e559f9e95853951588fb3b23ba9bef2e79092200d6deed575b9",
+    "observed_at": "2026-09-17T16:12:59.935Z",
+    "run_id": "demo-H3",
+    "schema": "rbb.witness.local.v1",
+    "sequence": 6
+  },
+  "demo-H4": {
+    "authentication": {
+      "algorithm": "ed25519",
+      "event_digest": "1c901239af20a422d5c02fd488195f8e3696f7205f5fa77edd103f48b3d11994",
+      "key_id": "witness-local",
+      "signature": "Q/jQp9HN6s7yQMF3P7RL9EHZyLSUcy2RVeqe7WpT7xVtmhJyR6tq5/hUjCEiLDpEwbyw/HCzvxOuk/Q/wnHYDw=="
+    },
+    "checkpoint_digest": "be347039d758e9a423846f3a6b09a46bc8664f13bc5c5c232413bd2d60ef2a2d",
+    "custody": "local_separate_db_same_machine",
+    "head_digest": "1c7b1578e9ca09ee2b84cc9406207cbd55e2b8992e5a0878032b4075ec5daf7a",
+    "observed_at": "2026-09-17T16:12:59.984Z",
+    "run_id": "demo-H4",
+    "schema": "rbb.witness.local.v1",
+    "sequence": 6
+  },
+  "demo-H5": {
+    "authentication": {
+      "algorithm": "ed25519",
+      "event_digest": "bed0e8bf1b8a5411c9033c417d81552c4fdf37ff2d51736d4b18e37e1300586d",
+      "key_id": "witness-local",
+      "signature": "7Q01+OQhLReQjZppSfcPBIO3nasEddnhsKWF0Kw33EmyR8WApZeUnRLfJQ1CTwJR5o/whlSNXzsKpTiB62rGBg=="
+    },
+    "checkpoint_digest": "f1c9ce78bbdd64ac167c17f5902419079bb475bc747004a6e9faa8707dfba11b",
+    "custody": "local_separate_db_same_machine",
+    "head_digest": "1e068635dced62769ad105d14b5993d0197730633f48fb48c358e3ee86518392",
+    "observed_at": "2026-09-17T16:13:00.041Z",
+    "run_id": "demo-H5",
+    "schema": "rbb.witness.local.v1",
+    "sequence": 6
+  },
+  "demo-H6": {
+    "authentication": {
+      "algorithm": "ed25519",
+      "event_digest": "66d8a7111c2e84df36446bcaee519ca8b9752aaf86205fe16ec74477fa91c0db",
+      "key_id": "witness-local",
+      "signature": "tzkJyzCTtuPKGYMUFyuuYRgGmRI9jcP39s5HuuaT3ak5qW8rjFI92RJy7WC7peop/upPewj335cPam/F5xsxBg=="
+    },
+    "checkpoint_digest": "2bdd81773ebe28b5dec5446e1357af112807d278ff30980f7e5138797d2e39f1",
+    "custody": "local_separate_db_same_machine",
+    "head_digest": "f3c4cec67ba025a30ca6dfc836eac576a26f3ff890bd57e6e41909888de6d85d",
+    "observed_at": "2026-09-17T16:13:00.113Z",
+    "run_id": "demo-H6",
+    "schema": "rbb.witness.local.v1",
+    "sequence": 6
+  }
+}

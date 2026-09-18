@@ -1,0 +1,5 @@
+import {readFileSync} from 'node:fs';
+import {canonical,digest,signed,authenticate} from '../../packages/robot-black-box-contract/src/index.mjs';
+import {localKey,atomicWrite} from '../../packages/robot-black-box-recorder/src/index.mjs';
+const receipt=JSON.parse(readFileSync('.rbb/langgraph-deletion/execution.json','utf8'));const key=localKey('.rbb/governance-demo/custody/producer-keys','producer-local');const trust=JSON.parse(readFileSync('.rbb/governance-demo/custody/trust.json','utf8'));
+const envelope=signed({schema:'rbb.context.deletion.receipt.v1',receipt,receipt_digest:digest(canonical(receipt)),custody:'same-machine producer; standalone receipt not witness-anchored'},key.keyId,key.privateKey,'CONTEXT-DELETION');authenticate(envelope,trust.producers,'CONTEXT-DELETION');atomicWrite('examples/robot-black-box-governance/executed/langgraph-deletion-receipt.json',canonical(envelope));console.log('Executed local thread deletion receipt signed and authenticated; public historical bundle retained.');

@@ -1,0 +1,20 @@
+{
+  "schema": "rbb.governance.profile.v1",
+  "version": "1.0.0",
+  "purpose": "governance_evaluation",
+  "scope": "governance_review_only",
+  "role": "lab_operator",
+  "max_context_age_ms": 60000,
+  "max_sensor_age_ms": 60000,
+  "required_context_providers": [
+    "obsidian",
+    "cognee",
+    "langgraph"
+  ],
+  "require_twin_kinds": [
+    "oss",
+    "proprietary"
+  ],
+  "sensitive_capture_allowed": false,
+  "compliance_claim": "control evidence only; no legal or safety certification"
+}

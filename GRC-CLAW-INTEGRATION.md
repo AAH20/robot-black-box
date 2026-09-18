@@ -1,0 +1,11 @@
+# Optional GRC Claw boundary
+
+Upstream/source relationship: [GRC Claw](https://github.com/AAH20/GRC_Claw). This monorepo extracts the existing Robot Black Box package boundaries and preserves the MIT license and @grc-claw namespace; it is a standalone repository candidate, not an added developer-preview folder in GRC Claw. No new code ownership or vendor rights are asserted.
+
+Core recording, signatures, witness checkpoints, verifier, passive adapters and policy run using Node built-ins from this root. They do not require the original monorepo, its applications, private stores or a hosted GRC service. npm workspaces are local source links; there are no registry dependencies. All nine existing Robot Black Box modules remain separate workspaces.
+
+The optional robot-black-box-grc-bridge implements importReport/importBytes and a durable local report helper. importReport dynamically loads the selected bundled GRC EvidenceStore and assessPhysicalAiSystem compatibility sources only when invoked. importBytes accepts supplied mapping implementations. The memory mapping attaches a report content digest and creates a metadata assurance envelope. Its readiness field is legacy metadata, not evidence of physical qualification or action authorization. DurableReportStore is local SQLite evidence persistence, not a remote GRC service connector.
+
+Two additional compatibility workspaces contain only the required existing MIT source modules. Their scoped release manifests accurately describe the included files rather than claiming the full upstream packages. npm run build:grc-bridge uses Node TypeScript stripping to produce their local dist modules. Default npm run build includes them so all 97 tests can run; npm run build:core excludes them. No upstream deployment, live API sync, production workflow or paid GRC Claw feature is established.
+
+The local evidence-access console remains MIT prototype code. Monetization would be separately agreed assessment, passive integration and supported customer-hosted operations. There is no new source license gate, SaaS subscription enforcement, availability commitment or commercial ownership assertion. Pricing hypotheses and partner offer drafts remain private and are excluded.

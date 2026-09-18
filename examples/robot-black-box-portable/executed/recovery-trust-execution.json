@@ -1,0 +1,189 @@
+{
+  "at": "2026-09-18T11:28:37.860Z",
+  "authority_revision": 4,
+  "bootstrap_pid": 16180,
+  "keys_and_pins": "same_host_demo",
+  "limits": "signed local enrollment revision; no online latest-revision discovery, independent distribution, old/new countersigned handover or compromise recovery",
+  "old_key_override": false,
+  "old_key_revoked": true,
+  "schema": "rbb.recovery.trust.execution.v1",
+  "source_stores_and_assembly_removed": true,
+  "steps": [
+    {
+      "error": "",
+      "name": "old_acceptance",
+      "pid": 16172,
+      "report": {
+        "idempotent": false,
+        "receipt": {
+          "acceptance_id": "acceptance-public-001",
+          "accepted_at": "2026-09-18T11:28:37.077Z",
+          "authentication": {
+            "algorithm": "ed25519",
+            "event_digest": "1e20bc297eb2c28fece3ea5f1e4f493c0f167ee221fb3465c4e92b51f9fb7c55",
+            "key_id": "custodian-local-separate",
+            "signature": "8gqwAHoTUccym07D7VadD6Qpn0fo/ZzDQ+vnv9Q9B6myY6QTVeHSBWmWOKWnKk0H/hREHYFSpd3a3J08bj/jBA=="
+          },
+          "custody": "separate_local_key_database_process_same_host",
+          "grant_digest": "61eaa208d4148e558e16f2d5903411a31a01e8363c135e5d17edde22ffb727a7",
+          "inventory_digest": "6642fca75b1cbdc5208b17d07952d930045c903e173b66ba7bfc526c44fbd191",
+          "issuer": "custodian-local-separate",
+          "manifest_digest": "6fd0596ca965543f794984f0b25263cff1a5fd6ac9cccd53d814c3ce13129be5",
+          "purpose": "investigation_review",
+          "schema": "rbb.custody.acceptance.v1",
+          "scope": "public_synthetic_portable_package_local_only",
+          "tenant": "tenant-a"
+        }
+      },
+      "status": 0
+    },
+    {
+      "error": "",
+      "name": "old_backup",
+      "pid": 16173,
+      "report": {
+        "idempotent": false,
+        "receipt": {
+          "acceptance_id": "acceptance-public-001",
+          "acceptance_receipt_digest": "56aa1a77d1944521207e35f16d6859ee16b53926cbfd2e3521f29a9a619afc6a",
+          "authentication": {
+            "algorithm": "ed25519",
+            "event_digest": "d3adb56606b7c4839e1721830ead4161e815694cc6f72940b492e3f76f9e274b",
+            "key_id": "custodian-local-separate",
+            "signature": "qwYa2HJD0aaQTZj06lLMgnG+kmOE3Jho/hI8QZ46drKwi8tEmEqy1rdre+WDKHvzeIeNAISbYrSjwF1fut9RCA=="
+          },
+          "backup_id": "old-custodian-backup",
+          "created_at": "2026-09-18T11:28:37.157Z",
+          "database_bytes": 192512,
+          "database_digest": "4e5e983ad984a0ccc0c62aa1597a97eea8b5d78b7b79ed3cca60a43a8b0fc47b",
+          "intent_digest": "58074a693ab1ba945f035a621697d509b1d1d210df8e2f5e3a25e1b05350ff51",
+          "issuer": "custodian-local-separate",
+          "manifest_digest": "6fd0596ca965543f794984f0b25263cff1a5fd6ac9cccd53d814c3ce13129be5",
+          "purpose": "investigation_review",
+          "schema": "rbb.custody.backup.v1",
+          "scope": "public_synthetic_portable_package_local_only",
+          "tenant": "tenant-a"
+        },
+        "receipt_digest": "ccc298d42188f797c18af287da0912e7cff4eb68fd89efdd1d946c276a4eda08"
+      },
+      "status": 0
+    },
+    {
+      "error": "",
+      "name": "successor_acceptance",
+      "pid": 16174,
+      "report": {
+        "idempotent": false,
+        "receipt": {
+          "acceptance_id": "acceptance-successor-001",
+          "accepted_at": "2026-09-18T11:28:37.213Z",
+          "authentication": {
+            "algorithm": "ed25519",
+            "event_digest": "97e39dc2dce23b3da5891a834b5e6238f95f6a4925d47ed3ab17d569d3250ff6",
+            "key_id": "custodian-local-successor",
+            "signature": "0fc8ENO7CeiFSYoc9qsq1ITAuWmxrmLAEiMYLFlbbGxdi+9EoJtkpoE6DaeznGnRhGFjc7INXq+c4IGJilbwDQ=="
+          },
+          "custody": "separate_local_key_database_process_same_host",
+          "grant_digest": "837a33f1c4f3fb2434530f5f94ab3b62f68cdbd8859b866161250ea1f638a367",
+          "inventory_digest": "6642fca75b1cbdc5208b17d07952d930045c903e173b66ba7bfc526c44fbd191",
+          "issuer": "custodian-local-successor",
+          "manifest_digest": "6fd0596ca965543f794984f0b25263cff1a5fd6ac9cccd53d814c3ce13129be5",
+          "purpose": "investigation_review",
+          "schema": "rbb.custody.acceptance.v1",
+          "scope": "public_synthetic_portable_package_local_only",
+          "tenant": "tenant-a"
+        }
+      },
+      "status": 0
+    },
+    {
+      "error": "",
+      "name": "successor_backup",
+      "pid": 16175,
+      "report": {
+        "idempotent": false,
+        "receipt": {
+          "acceptance_id": "acceptance-successor-001",
+          "acceptance_receipt_digest": "0bdc907f281d2c330ffd8a580fa919e1ed4c8c2150cadcf59a6c0be5f317210a",
+          "authentication": {
+            "algorithm": "ed25519",
+            "event_digest": "b87e875ab44e4f9fedb33062093bd5d7dd68a47791e1122a584459cac575b5f9",
+            "key_id": "custodian-local-successor",
+            "signature": "O/jJG4Jcvs90HQGkWMHFMe24LN7r3VxkwxAY8PBRUwLE6BBvYKwH4umdSTf8+9psP862U09AMsMCuueZ+ql9DA=="
+          },
+          "backup_id": "successor-backup",
+          "created_at": "2026-09-18T11:28:37.293Z",
+          "database_bytes": 192512,
+          "database_digest": "85837e49aa42dc55dd63cfad4fd551a0f100ae2317bc22bf780ba1ec5e953a2f",
+          "intent_digest": "b3b2f0eefb3e7bfa9c099df3f27d42227df00fd4dc378e5d4c4d10af081153e8",
+          "issuer": "custodian-local-successor",
+          "manifest_digest": "6fd0596ca965543f794984f0b25263cff1a5fd6ac9cccd53d814c3ce13129be5",
+          "purpose": "investigation_review",
+          "schema": "rbb.custody.backup.v1",
+          "scope": "public_synthetic_portable_package_local_only",
+          "tenant": "tenant-a"
+        },
+        "receipt_digest": "cbfb005670a40387adb2dce92ddbe56b2963989fadc942348e6c9c3bd40afda0"
+      },
+      "status": 0
+    },
+    {
+      "error": "KEY_REVOKED\n",
+      "name": "revoked_backup_denied",
+      "pid": 16176,
+      "report": null,
+      "status": 2
+    },
+    {
+      "error": "RECOVERY_TRUST_ROLLBACK\n",
+      "name": "old_revision_denied",
+      "pid": 16177,
+      "report": null,
+      "status": 2
+    },
+    {
+      "error": "RECOVERY_TRUST_STALE\n",
+      "name": "stale_revision_denied",
+      "pid": 16178,
+      "report": null,
+      "status": 2
+    },
+    {
+      "error": "",
+      "name": "successor_recovery",
+      "pid": 16179,
+      "report": {
+        "acceptance_receipt_verified": true,
+        "backup_receipt_verified": true,
+        "online_freshness": "unknown",
+        "package_path": "<local-runtime-path-redacted> 2/GRC_Claw/.rbb/recovery-trust-final/successor-recovery/package",
+        "private_key_required": false,
+        "receipt": {
+          "acceptance_id": "acceptance-successor-001",
+          "accepted_at": "2026-09-18T11:28:37.213Z",
+          "authentication": {
+            "algorithm": "ed25519",
+            "event_digest": "97e39dc2dce23b3da5891a834b5e6238f95f6a4925d47ed3ab17d569d3250ff6",
+            "key_id": "custodian-local-successor",
+            "signature": "0fc8ENO7CeiFSYoc9qsq1ITAuWmxrmLAEiMYLFlbbGxdi+9EoJtkpoE6DaeznGnRhGFjc7INXq+c4IGJilbwDQ=="
+          },
+          "custody": "separate_local_key_database_process_same_host",
+          "grant_digest": "837a33f1c4f3fb2434530f5f94ab3b62f68cdbd8859b866161250ea1f638a367",
+          "inventory_digest": "6642fca75b1cbdc5208b17d07952d930045c903e173b66ba7bfc526c44fbd191",
+          "issuer": "custodian-local-successor",
+          "manifest_digest": "6fd0596ca965543f794984f0b25263cff1a5fd6ac9cccd53d814c3ce13129be5",
+          "purpose": "investigation_review",
+          "schema": "rbb.custody.acceptance.v1",
+          "scope": "public_synthetic_portable_package_local_only",
+          "tenant": "tenant-a"
+        },
+        "recovery_trust_digest": "6ed6d50b0ad6935ab0fcc004ec2f49372f6de4e066d2572543133428b5f74d42",
+        "recovery_trust_revision": 4,
+        "restored_files": 47,
+        "trust_source": "reviewer_pinned_authority_signed_local_revision"
+      },
+      "status": 0
+    }
+  ],
+  "successor_is_fresh_acceptance_not_resigning_old_backup": true
+}

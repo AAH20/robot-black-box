@@ -1,0 +1,14 @@
+{
+  "name": "@grc-claw/robot-black-box-governance",
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "exports": "./src/index.mjs",
+  "engines": {
+    "node": ">=22.23.0"
+  },
+  "scripts": {
+    "build": "node --check src/index.mjs"
+  },
+  "private": true
+}

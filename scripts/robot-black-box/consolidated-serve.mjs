@@ -1,0 +1,2 @@
+import {LocalCommercial,server} from '../../packages/robot-black-box-commercial/src/index.mjs';
+const service=new LocalCommercial(process.argv[2]??'.rbb/governance-operational-commercial',process.argv[3]??'.rbb/governance-demo'),port=Number(process.env.RBB_PORT??4323),s=server(service,{port});s.listen(port,'127.0.0.1',()=>console.log('Read-only public review at http://127.0.0.1:'+port+'; existing private demo credentials required. No re-ingestion.'));for(const sig of ['SIGINT','SIGTERM'])process.on(sig,()=>s.close(()=>{service.close();process.exit(0);}));

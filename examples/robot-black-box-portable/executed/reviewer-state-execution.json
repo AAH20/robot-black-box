@@ -1,0 +1,161 @@
+{
+  "acceptance_pid": 19046,
+  "at": "2026-09-18T11:42:12.663Z",
+  "backup_pid": 19047,
+  "bootstrap_pid": 19049,
+  "final": {
+    "profile": {
+      "authority_fingerprint": "b259d398f2b3583efa30579c6bfe28514eaa5857519773efe677e064ff1aee93",
+      "initial_minimum_revision": 1,
+      "profile_id": "reviewer-local",
+      "purpose": "investigation_review",
+      "tenant": "tenant-a"
+    },
+    "revision": 2,
+    "trust_digest": "626694b8ca1fb1bfd389cd964ddf0d2ea45d1124a9909ccefcc48f8eba259090"
+  },
+  "schema": "rbb.reviewer.state.execution.v1",
+  "scope": "same-host WAL/FULL durable floor, not anti-rollback secure hardware or external witness",
+  "source_store_and_assembly_removed": true,
+  "steps": [
+    {
+      "error": "",
+      "name": "enroll",
+      "pid": 19039,
+      "report": {
+        "enrolled": true,
+        "idempotent": false
+      },
+      "status": 0
+    },
+    {
+      "error": "",
+      "name": "interruption_before_commit",
+      "pid": 19040,
+      "report": null,
+      "status": 96
+    },
+    {
+      "error": "",
+      "name": "status_after_rollback",
+      "pid": 19041,
+      "report": {
+        "profile": {
+          "authority_fingerprint": "b259d398f2b3583efa30579c6bfe28514eaa5857519773efe677e064ff1aee93",
+          "initial_minimum_revision": 1,
+          "profile_id": "reviewer-local",
+          "purpose": "investigation_review",
+          "tenant": "tenant-a"
+        },
+        "revision": 0,
+        "trust_digest": null
+      },
+      "status": 0
+    },
+    {
+      "error": "",
+      "name": "interruption_after_commit",
+      "pid": 19042,
+      "report": null,
+      "status": 95
+    },
+    {
+      "error": "",
+      "name": "retry_committed",
+      "pid": 19043,
+      "report": {
+        "freshness": "valid_local_signed_snapshot_not_online_attested",
+        "idempotent": true,
+        "keys": {
+          "custodian-local-separate": {
+            "public_key": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAwEeMBfPGy/Y0kmRGPLwufTHZzg5Ye1MORAjqh/32xis=\n-----END PUBLIC KEY-----\n",
+            "purposes": [
+              "investigation_review"
+            ],
+            "revoked": false,
+            "tenants": [
+              "tenant-a"
+            ]
+          }
+        },
+        "profile": {
+          "authority_fingerprint": "b259d398f2b3583efa30579c6bfe28514eaa5857519773efe677e064ff1aee93",
+          "initial_minimum_revision": 1,
+          "profile_id": "reviewer-local",
+          "purpose": "investigation_review",
+          "tenant": "tenant-a"
+        },
+        "revision": 2,
+        "trust_digest": "626694b8ca1fb1bfd389cd964ddf0d2ea45d1124a9909ccefcc48f8eba259090"
+      },
+      "status": 0
+    },
+    {
+      "error": "RECOVERY_TRUST_ROLLBACK\n",
+      "name": "rollback_denied",
+      "pid": 19044,
+      "report": null,
+      "status": 2
+    },
+    {
+      "error": "REVIEWER_TRUST_FORK\n",
+      "name": "fork_denied",
+      "pid": 19045,
+      "report": null,
+      "status": 2
+    },
+    {
+      "error": "",
+      "name": "recover_with_retained_floor",
+      "pid": 19048,
+      "report": {
+        "acceptance_receipt_verified": true,
+        "backup_receipt_verified": true,
+        "floor_committed_before_recovery": true,
+        "online_freshness": "unknown",
+        "package_path": "<local-runtime-path-redacted> 2/GRC_Claw/.rbb/reviewer-state-final/recovered/package",
+        "private_key_required": false,
+        "receipt": {
+          "acceptance_id": "acceptance-public-001",
+          "accepted_at": "2026-09-18T11:42:12.335Z",
+          "authentication": {
+            "algorithm": "ed25519",
+            "event_digest": "14085bec4817aff671cde761f144d818d5823f5137a830e25cc0abbedc8172d9",
+            "key_id": "custodian-local-separate",
+            "signature": "CTTqFdFd/MfKfaCmjy39b+Q4/BmLcjyH0n3jhfOT3EBT0YhplzXByACQW8eJCbviTCsmA6G1qU2p8Jl4yAq1Bw=="
+          },
+          "custody": "separate_local_key_database_process_same_host",
+          "grant_digest": "32307e039eb01006e39e233dc1b65451e32bf10cdd07d4c671d6b8383d1af1f4",
+          "inventory_digest": "6642fca75b1cbdc5208b17d07952d930045c903e173b66ba7bfc526c44fbd191",
+          "issuer": "custodian-local-separate",
+          "manifest_digest": "6fd0596ca965543f794984f0b25263cff1a5fd6ac9cccd53d814c3ce13129be5",
+          "purpose": "investigation_review",
+          "schema": "rbb.custody.acceptance.v1",
+          "scope": "public_synthetic_portable_package_local_only",
+          "tenant": "tenant-a"
+        },
+        "restored_files": 47,
+        "retained_revision": 2,
+        "reviewer_profile": "reviewer-local"
+      },
+      "status": 0
+    },
+    {
+      "error": "",
+      "name": "final_status",
+      "pid": 19051,
+      "report": {
+        "profile": {
+          "authority_fingerprint": "b259d398f2b3583efa30579c6bfe28514eaa5857519773efe677e064ff1aee93",
+          "initial_minimum_revision": 1,
+          "profile_id": "reviewer-local",
+          "purpose": "investigation_review",
+          "tenant": "tenant-a"
+        },
+        "revision": 2,
+        "trust_digest": "626694b8ca1fb1bfd389cd964ddf0d2ea45d1124a9909ccefcc48f8eba259090"
+      },
+      "status": 0
+    }
+  ]
+}

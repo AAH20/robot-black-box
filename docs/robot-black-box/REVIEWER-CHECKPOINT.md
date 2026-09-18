@@ -1,0 +1,26 @@
+# Separately retained reviewer-state checkpoint
+
+Durable unsigned reviewer state survives ordinary restarts but can be replaced by an older valid database. The new reviewer checkpoint protects a separately retained, explicitly pinned floor from that local replacement. It uses the existing canonical Ed25519 contract, previous-record digest convention and SQLite WAL/FULL transactions; recorder witness receipts and producer checkpoints remain unchanged because they bind different entities.
+
+A distinct checkpoint signer signs the exact reviewer profile/anchors, accepted authority revision and signed-trust digest, checkpoint sequence, prior checkpoint digest, declared issuance/expiry and explicit same-host scope. Publication requires separately supplied profile anchors and a valid authority-signed trust chain matching the local floor. It also verifies ancestry against its previous checkpoint and rejects signer overlap with authority/custodian roles, floor rollback or fork. It does not sign arbitrary values from the unsigned reviewer database alone.
+
+The reviewer supplies the signer public identity pin, exact expected checkpoint sequence/digest, and profile anchors from outside the incoming package/local reviewer database. The checkpoint signature, enrollment scope/revocation and expiry must verify. Recovery compares the exact profile, revision and trust digest with local state and rejects missing state without auto-enrollment. The operational gate uses process wall time; a supplied historical time cannot bypass expiry. Pure checkpoint verification supports explicit historical diagnostics only.
+
+Incoming signed trust must match the checkpointed revision/digest. To advance trust, use the existing signed observer to accept the newer revision, publish a fresh checkpoint, and independently retain its new sequence/digest before checkpoint-gated recovery. This entry point does not silently advance to an uncheckpointed state. Exact publication retry returns the same checkpoint; explicit renewal creates a new chained sequence at the same accepted floor. An expired checkpoint must be renewed under a valid current signer policy, not treated as current by replaying an earlier time.
+
+Run a fresh rehearsal:
+
+```sh
+node scripts/robot-black-box/reviewer-checkpoint-execute.mjs .rbb/reviewer-checkpoint-new
+node --test scripts/test-robot-black-box-reviewer-checkpoint.mjs
+```
+
+The directory must not already exist. Private signer keys/configs and state are local 0600 files under a 0700 root. Public outputs adjacent to the preserved portable package are `reviewer-checkpoint-chain.json`, `reviewer-checkpoint-public-pins.json`, `reviewer-checkpoint-review.json` and `reviewer-checkpoint-execution.json`. There are no private keys in public outputs. No package files or original signed fixtures/media are modified.
+
+The actual drill used 14 fresh worker processes to publish checkpoints 1–4, advance the observed authority floor, exit 94 before checkpoint commit and retry, exit 93 after commit and read back idempotently, reject replacement with an older valid reviewer database, reject an older/altered checkpoint and wrong signer, create custody acceptance/backup and perform clean checkpoint-gated recovery. Checkpoint 4 was retained outside the reviewer database; the old database was physically copied over the latest database. A separately retained clean latest-state copy was subsequently reinstated and passed the checkpoint check. Source custody store and assembly were removed before recovery; a copied-out trusted bootstrap verified six signed cases from the restored package.
+
+All 111 local tests passed: prior 100 plus 11 focused tests for actual database replacement, signer/pin/sequence/tamper/expiry/revocation rejection, missing state without auto-enrollment and real pre/post-commit checkpoint interruption/retry. CI includes the test but has not executed remotely. The demonstration retains checkpoint material in a different directory and uses a distinct key/process on one host; it is not independent custody or off-host protection.
+
+Limits: offline verification cannot discover a newer checkpoint that the reviewer did not retain. A privileged attacker who replaces the reviewer database, signer journal, checkpoint and every external expected pin can replay older state; this software cannot create HSM/WORM protection. The latest digest/sequence must be independently retained and updated. Expiry uses local wall time, not TSA/trusted hardware. Checkpoints bind observed enrollment, not source truth, legal admissibility, online current trust or recorder hardware survival. Signer/key compromise, external identity distribution, signer rotation and recovery after loss of both local and retained copies remain open gates.
+
+No automatic repair/re-enrollment was added. A valid separately retained latest-state copy can be restored and verified against the checkpoint, as executed here. If the state is missing or no valid matching copy exists, recovery fails closed. Reconstructing lost reviewer state from an authenticated checkpoint alone needs an explicit approved import/migration workflow that preserves history and retained floors; this milestone does not silently erase history to initialize a replacement.

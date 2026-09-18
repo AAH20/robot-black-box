@@ -1,0 +1,1 @@
+{"synthetic":true,"tenant":"tenant-a","files":[{"path":"governance.md","id":"vault-policy","role":"lab_operator","purpose":"governance_evaluation","version":"demo-v1","instruction_like":false},{"path":"malicious-note.md","id":"vault-untrusted","role":"lab_operator","purpose":"governance_evaluation","version":"demo-v1","instruction_like":true}]}

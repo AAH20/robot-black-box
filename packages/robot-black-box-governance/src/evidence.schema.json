@@ -1,0 +1,607 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "profile_version",
+    "tenant",
+    "run_id",
+    "case_id",
+    "at",
+    "purpose",
+    "model",
+    "twins",
+    "biometric",
+    "sources",
+    "retrievals",
+    "workflow",
+    "deletion",
+    "approval"
+  ],
+  "properties": {
+    "schema": {
+      "const": "rbb.governance.evidence.v1"
+    },
+    "profile_version": {
+      "const": "1.0.0"
+    },
+    "tenant": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "case_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "at": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "format": "date-time"
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "model_revision",
+        "expected_revision",
+        "weights_digest",
+        "config_digest",
+        "embodiment",
+        "scope",
+        "license_declaration",
+        "status"
+      ],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "model_revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "expected_revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "weights_digest": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "config_digest": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "embodiment": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "license_declaration": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "live",
+            "replay",
+            "simulated",
+            "unavailable"
+          ]
+        }
+      }
+    },
+    "twins": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source",
+          "kind",
+          "license_declaration",
+          "version",
+          "expected_version",
+          "asset_digest",
+          "embodiment",
+          "scenario_digest",
+          "sensor_time",
+          "sim_to_real_assessed",
+          "status"
+        ],
+        "properties": {
+          "source": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "oss",
+              "proprietary"
+            ]
+          },
+          "license_declaration": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "expected_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "asset_digest": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "embodiment": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "scenario_digest": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "sensor_time": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "format": "date-time"
+          },
+          "sim_to_real_assessed": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "live",
+              "replay",
+              "simulated",
+              "unavailable"
+            ]
+          }
+        }
+      }
+    },
+    "biometric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subject_ref",
+        "synthetic",
+        "purpose",
+        "legal_basis_declaration",
+        "consent_expires",
+        "assessment_ref",
+        "human_review",
+        "raw_capture",
+        "matching_enabled",
+        "tracking_enabled",
+        "retention_until",
+        "status"
+      ],
+      "properties": {
+        "subject_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^synthetic-[a-z0-9-]+$"
+        },
+        "synthetic": {
+          "const": true
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "legal_basis_declaration": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "consent_expires": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "format": "date-time"
+        },
+        "assessment_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "human_review": {
+          "type": "boolean"
+        },
+        "raw_capture": {
+          "type": "boolean"
+        },
+        "matching_enabled": {
+          "const": false
+        },
+        "tracking_enabled": {
+          "const": false
+        },
+        "retention_until": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "live",
+            "replay",
+            "simulated",
+            "unavailable"
+          ]
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "provider",
+          "tenant",
+          "role",
+          "purpose",
+          "version",
+          "current_version",
+          "digest",
+          "observed_at",
+          "conflict",
+          "deleted",
+          "instruction_like",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "provider": {
+            "type": "string",
+            "enum": [
+              "obsidian",
+              "cognee",
+              "langgraph"
+            ]
+          },
+          "tenant": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "current_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "digest": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "observed_at": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "format": "date-time"
+          },
+          "conflict": {
+            "type": "boolean"
+          },
+          "deleted": {
+            "type": "boolean"
+          },
+          "instruction_like": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "live",
+              "replay",
+              "simulated",
+              "unavailable"
+            ]
+          }
+        }
+      }
+    },
+    "retrievals": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_id",
+          "source_digest",
+          "decision",
+          "treatment",
+          "content_persisted"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "source_digest": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "allowed",
+              "denied",
+              "excluded_deleted"
+            ]
+          },
+          "treatment": {
+            "type": "string",
+            "enum": [
+              "untrusted_data",
+              "promoted_instruction"
+            ]
+          },
+          "content_persisted": {
+            "const": false
+          }
+        }
+      }
+    },
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "graph_revision",
+        "thread_ref",
+        "checkpoint_ref",
+        "approval_checkpoint",
+        "status"
+      ],
+      "properties": {
+        "provider": {
+          "const": "langgraph"
+        },
+        "graph_revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "thread_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "checkpoint_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "approval_checkpoint": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "live",
+            "replay",
+            "simulated",
+            "unavailable"
+          ]
+        }
+      }
+    },
+    "deletion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requested",
+        "source_ids",
+        "local_cache_removed",
+        "vendor_receipts",
+        "scope"
+      ],
+      "properties": {
+        "requested": {
+          "type": "boolean"
+        },
+        "source_ids": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          }
+        },
+        "local_cache_removed": {
+          "type": "boolean"
+        },
+        "vendor_receipts": {
+          "type": "string",
+          "enum": [
+            "not_requested",
+            "fixture_ack",
+            "missing"
+          ]
+        },
+        "scope": {
+          "const": "local synthetic context cache; source vault and immutable signed evidence retained"
+        }
+      }
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "issuer",
+        "tenant",
+        "run_id",
+        "role",
+        "scope",
+        "document_digest",
+        "profile_digest",
+        "not_before",
+        "expires_at",
+        "authentication"
+      ],
+      "properties": {
+        "schema": {
+          "const": "rbb.governance.approval.v1"
+        },
+        "issuer": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "tenant": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "run_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "role": {
+          "const": "lab_operator"
+        },
+        "scope": {
+          "const": "governance_review_only"
+        },
+        "document_digest": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "profile_digest": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "not_before": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "format": "date-time"
+        },
+        "expires_at": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "format": "date-time"
+        },
+        "authentication": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "algorithm",
+            "key_id",
+            "event_digest",
+            "signature"
+          ],
+          "properties": {
+            "algorithm": {
+              "const": "ed25519"
+            },
+            "key_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "event_digest": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "signature": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            }
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:rbb:governance:evidence:1.0.0"
+}

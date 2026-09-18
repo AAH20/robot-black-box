@@ -1,0 +1,20 @@
+{
+  "schema": "rbb.simulation.browser.verification.v1",
+  "provenance": "unsigned local-executed browser checks",
+  "at": "2026-09-18T12:48:54.974352+00:00",
+  "cards": 8,
+  "rows": 11,
+  "aircraft_gaps": 5,
+  "baseline_citation": {
+    "visible": true,
+    "simulation_clock_domain_visible": true,
+    "private_paths": false
+  },
+  "mobile": {
+    "viewport_width": 390,
+    "document_width": 390
+  },
+  "browser_errors": [],
+  "browser_closed": true,
+  "screenshot_sha256": "cc72d30dd1b1e5df1570919628100ad6629ae0393e3c472b52c833c994863bfd"
+}

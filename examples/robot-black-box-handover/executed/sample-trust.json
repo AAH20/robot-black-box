@@ -1,0 +1,38 @@
+{
+  "authorities": {
+    "authority-local": {
+      "public_key": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAbhbl4XUiRZ4Tg007MkNhddXHTY+m/4wrnlhf9goTCpc=\n-----END PUBLIC KEY-----\n",
+      "revoked": false,
+      "roles": [
+        "lab_operator"
+      ],
+      "tenants": [
+        "tenant-a",
+        "tenant-b"
+      ]
+    }
+  },
+  "limitations": [
+    "Same-machine local development custody only."
+  ],
+  "producers": {
+    "producer-local": {
+      "public_key": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAbcJgRqs5mhARHUhbCzN1MQ0TbYnIPiTTO0SbiRgRI4g=\n-----END PUBLIC KEY-----\n",
+      "revoked": false,
+      "systems": [
+        "handover-synthetic-01"
+      ],
+      "tenants": [
+        "tenant-a",
+        "tenant-b"
+      ]
+    }
+  },
+  "schema": "rbb.trust.local.v1",
+  "witnesses": {
+    "witness-local": {
+      "public_key": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAi9PwcnNVwxQy1OzAMQEYEMvcgL7f4GBZd34HG0JsZsI=\n-----END PUBLIC KEY-----\n",
+      "revoked": false
+    }
+  }
+}

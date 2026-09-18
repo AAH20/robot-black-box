@@ -1,0 +1,29 @@
+# Executed local trust and safety profile
+
+Wire version `1.0.0-local.1` is intentionally distinct from the proposed stable portable v1. Only single-stream, one-boot-epoch, public-synthetic replay is supported. Strictly canonical wire JSON rejects duplicate keys and alternate serialization. SHA-256 covers canonical bodies and exact artifact bytes; Ed25519 uses separate event/manifest/checkpoint/authority/witness/audit/deletion/snapshot domain tags. Unsupported versions/types do not pass. Decimal-string monotonic nanoseconds and safe integer counters avoid lossy integer representation. The canonicalizer uses RFC 8785-compatible ECMAScript serialization/key order on its supported profile, rejecting unsafe integers and invalid Unicode; full arbitrary cross-language JCS conformance is not claimed.
+
+## Local custody
+
+Producer, authority, witness and service-audit private keys are separate files in separate private directories, created with mode 0600; directories are mode 0700. Witness state is a separate SQLite WAL database. No private key is put in bundles or video props. These are development file keys on one machine, **not** TPM/KMS-backed keys, independent remote accounts or qualified protected custody. An attacker controlling this machine can replace both trusted state and records. Trusted latest-head snapshots and trust enrollment must be supplied outside the bundle; a self-supplied sample trust file is useful for demonstrating verification, not evidence of third-party endorsement.
+
+Recorder commits each sequence/event atomically in SQLite with WAL/FULL synchronous mode and rejects conflicting duplicate IDs. Real process-exit testing demonstrates rollback/restart without phantom records. This does not prove survivability under every filesystem/power failure, measured disk-full reserve guarantees or physical crash survival. Local spool budget is an event-count limit, not the planned disk-reserve/backpressure controller.
+
+Original handover checkpoints are explicit at completed replay export. A later [bounded assurance service](CONTINUOUS-ASSURANCE.md) executes automatic local checkpoints with signed journals and process restart recovery. Witness detects conflicting/rolled-back heads and retains signed receipts; signatures/receipts bind the signed manifest and event/artifact digests through the exported chain. Without trusted head snapshot, latestness is unknown. The service has a configured timer and finite tick budget; no qualified 100-event/5-second production scheduler, remote witness, multi-producer merge or external timestamp authority is claimed. The tail between a checkpoint and later records remains unanchored. Local rotation now binds separate old/new signatures, an authority-signed revision and prior witnessed head, using a new single-key run epoch. Historical snapshots preserve as-of verification; current revoked trust remains unknown/unusable. Protected external signer rotation remains a gate.
+
+## What a valid result means
+
+A valid bundle has retained bytes consistent with trusted public signing keys, stream sequence/causal links, artifact digests and supplied witness head within scope. The synthetic authority grant is independently signed and bound to tenant/system/run/action/task/purpose/config/policy and validity interval. Evaluation passes only applicable supported predicates; a known expiry/config mismatch fails, absent execution or uncertain clock boundary stays unknown. Task success cannot override those results.
+
+Integrity invalid clears all usable facts before policy evaluation. A missing artifact leaves signed-record integrity valid, flags artifact availability/completeness partial and prevents a blanket policy pass when complete evidence is required. A bad or untrusted authority signature cannot be repaired by the producer signature. All reports retain scope and limitations; no metadata readiness score is treated as safety certification.
+
+Synthetic observations, proposals, execution and approvals are generated scenario facts, not hardware measurements, genuine operator decisions, NVIDIA policy inference or private model reasoning. The recorded values establish supplied scenario inputs. No sensor-truth or complete-capture guarantee follows from signatures. Independent Python/OpenSSL checks cryptography for the local integer/ASCII profile and does not evaluate safety or general-purpose policy.
+
+## Commercial/privacy scope
+
+Only synthetic public artifacts are accepted. Tenant-scoped APIs require local credentials and role/purpose checks. AES-GCM encryption, hold/release, key+managed-copy deletion and signed tombstone are executed demonstrations. Original public replay remains outside managed retention. No private erasure, legal-hold compliance, backup expiry/replica guarantees, external customer key custody, OIDC, tenant-grade production isolation or SLA is claimed. Tenant snapshots contain only that tenant's metadata; custody/audit/source bundles are outside the snapshot.
+
+Investigation notes are human comments with validated accessible event references, not proven causal conclusions or model-generated hidden reasoning. No evidence investigation LLM or agent executes in this release. Recorder, evaluator, verifier and service possess no actuator/vehicle/weapon credentials or motion-control interfaces. All examples are benign; no real robots, drones, weapons, surveillance subjects or customer data were used.
+
+## Agentic governance extension
+
+The executed VLA/twin, synthetic biometric and context-governance extension is documented separately: [running guide](GOVERNANCE.md), [measured technical review](GOVERNANCE-REVIEW.md) and [stakeholder demonstration](GOVERNANCE-DEMO.md). Real local vault reads and LangGraph checkpoint execution are distinguished from simulated vendor receipts and failed Cognee runtime probes. Original handover outcomes and videos remain valid within their earlier scope.

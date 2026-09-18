@@ -1,0 +1,30 @@
+# Local custody acceptance and restore rehearsal
+
+Recorder witness receipts attest checkpoint observations, and durable GRC storage persists report bytes. Neither previously supplied separately keyed acceptance and restoration of the entire portable public evidence package. This milestone adds that bounded gap, using existing Ed25519 signing/canonical JSON and the trusted bootstrap's bounded inventory check. Original bundles, the 46-entry public package inventory, signatures and media are preserved.
+
+`LocalCustody` in `scripts/robot-black-box/local-custody.mjs` stores the fixed public synthetic portable package in a separate SQLite database with WAL/FULL transactions. Intake must match the delivered public package manifest digest; arbitrary private/context packages are ineligible. Acceptance requires an enrolled, non-revoked issuer's signed `CUSTODY-GRANT`, bound to acceptance ID, tenant, purpose, scope, package digest and validity interval. Only `tenant-a` / `investigation_review` / the local public synthetic scope are supported. The issuer and custodian public keys must differ from each other and from the package's publisher-role keys.
+
+The custodian signs `CUSTODY-ACCEPTANCE` using a separate key. It binds the exact manifest digest, canonical inventory digest, grant digest, ID, tenant, purpose, declared acceptance timestamp and explicit same-host custody scope. Timestamp and grant validity use local wall time; no trusted timestamp authority or independently attested clock is supplied. Acceptance rows and all package bytes commit atomically. Repeating the exact binding returns the original receipt; changing the binding under the same ID is refused. This is logical immutability, not OS-enforced WORM storage or a guarantee against privileged mutation.
+
+Restoration requires an explicitly supplied custodian public-identity pin outside the package: SHA-256 of the enrolled SPKI PEM bytes, including their newlines. The reviewer-side public enrollment must also permit the tenant and purpose and must not be revoked. `verifyAcceptance` authenticates that receipt with the pinned identity; restore then checks every stored file against its signed manifest/inventory binding before writing to a new destination. The private custodian signing key is not needed by the restore worker. The standalone trusted bootstrap subsequently checks the separately supplied package digest and evaluates evidence. Receipt validity and evidence integrity are separate results; neither proves live source truth.
+
+Run a fresh rehearsal with:
+
+```sh
+node scripts/robot-black-box/custody-execute.mjs .rbb/custody-restore-new
+node --test scripts/test-robot-black-box-custody.mjs
+```
+
+The execution directory must not already exist. Private acceptance-worker configs stay inside that local directory with mode 0600 under a 0700 root. Public outputs are adjacent to the preserved package at `examples/robot-black-box-portable/executed/`: `custody-acceptance.json`, `custody-grant.json`, `custody-public-trust.json`, `custody-restored-review.json` and `custody-restore-execution.json`. Public output has no private signing keys; it does not export arbitrary source contexts.
+
+Executed results: ten fresh custody worker processes cover actual exits 99 before commit and 98 after commit, rollback retry, lost-acknowledgement retry, idempotent receipt readback, wrong identity, tampered file bytes, missing files, tampered receipt and clean restore. The assembly copy is removed before restoration; the original public fixture is intentionally preserved. The restore worker receives only public keys. A copied-out trusted bootstrap runs in another process and verifies all six original signed cases from the restored 47-file directory. Capture quality still fails four authored cases and remains unknown for two; valid custody/signatures do not turn those outcomes into passes.
+
+Nine focused tests cover acceptance/idempotency, restoration, wrong/absent custodian pins, tenant/purpose/expiry/conflicting bindings, revoked key, damaged custody copy/receipt, actual pre/post-commit exits and executed public receipts/grants. The full local suite passed 70/70 tests, preserving the previous 61. CI includes the test but has not executed remotely. The bootstrap's bounded check is reused without executing included code at acceptance, and it makes a verified private snapshot before review.
+
+All demo issuer/custodian keys, reviewer enrollment, identity pins and package pins are generated or supplied on one host. Separate keys, SQLite storage and processes demonstrate local separation only. A genuine external reviewer must independently acquire the custodian identity, enrollment/revocation policy, package pin and trusted tool code. This demonstration creates no organizational independence, external custody, legal admissibility, online freshness, sensor authenticity, crash/fire/water protection or secure erase. It does not recover from losing the custodian database itself.
+
+Remaining gates include externally managed trust distribution and revocation, HSM-backed custodian keys, trusted timestamps, off-host immutable replication, backup/restore verification after loss of the custody store, recovery-time/data-loss objectives, real source acquisition and physical recorder qualification. No cloud accounts, services or deployment were introduced.
+
+## Custody-store loss recovery milestone
+
+A signed bounded SQLite backup now supports restoration after the original custody database/assembly/private worker configs are removed. Recovery requires separate custodian identity and intended backup-receipt pins, checks bytes before opening the snapshot, validates custody and restores the unchanged package before trusted bootstrap review. The executed same-host isolated-copy drill recovered 47 files/six valid signed cases; all 81 local tests passed. It does not demonstrate off-host replication, host/media-loss recovery, independent pin distribution or production RTO/RPO. See [CUSTODY-BACKUP-RECOVERY.md](CUSTODY-BACKUP-RECOVERY.md).

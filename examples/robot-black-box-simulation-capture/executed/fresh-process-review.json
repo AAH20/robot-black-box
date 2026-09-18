@@ -1,0 +1,198 @@
+{
+  "schema": "rbb.simulation.capture.review.v1",
+  "simulation": {
+    "clock_domains": {
+      "source": "MuJoCo elapsed simulation seconds",
+      "source_host": "Python time_ns / monotonic_ns; uncalibrated local host"
+    },
+    "contacts": 1,
+    "elapsed_simulation_seconds": 2.0000000000000013,
+    "engine": "MuJoCo",
+    "final_height_m": 0.09963281815747682,
+    "final_vertical_velocity_m_per_s": -5.8428644425087544e-12,
+    "license": "Apache-2.0",
+    "limitations": [
+      "No hardware, robot policy, human sensing, or real-world safety assessment.",
+      "Measured stability is specific to this synthetic scenario."
+    ],
+    "samples": 100,
+    "samples_digest": "0decf2370abfbc133c319e14c19fb1cefc75b0e8c6a49f113cd9f7cedd17c227",
+    "scenario": "passive synthetic sphere drop onto plane",
+    "scenario_digest": "2edc1d3ffd2c50f30639377b471212d9f250880aa2ff04cd6561ae167e37763b",
+    "schema": "rbb.simulation.execution.v1",
+    "sim_to_real_assessed": false,
+    "status": "live",
+    "steps": 1000,
+    "timestep_seconds": 0.002,
+    "version": "3.13.0"
+  },
+  "cases": [
+    {
+      "name": "MuJoCo observed_baseline",
+      "integrity": "valid",
+      "authorization_at_execution": "not_applicable_passive_capture",
+      "capture_historical": "unknown",
+      "capture_current": "unknown",
+      "profile_validity_now": "within_declared_validity",
+      "receipt_recomputed_match": true,
+      "observations": 300,
+      "codes": [
+        "CHANNEL_CALIBRATION_UNVERIFIED",
+        "LIVE_CAPTURE_NOT_OBSERVED"
+      ],
+      "provenance": "local_executed_simulation"
+    },
+    {
+      "name": "MuJoCo dropped_sample",
+      "integrity": "valid",
+      "authorization_at_execution": "not_applicable_passive_capture",
+      "capture_historical": "fail",
+      "capture_current": "fail",
+      "profile_validity_now": "within_declared_validity",
+      "receipt_recomputed_match": true,
+      "observations": 297,
+      "codes": [
+        "CHANNEL_COUNT_MISMATCH",
+        "CHANNEL_INTERVAL_EXCEEDED",
+        "CHANNEL_CALIBRATION_UNVERIFIED",
+        "LIVE_CAPTURE_NOT_OBSERVED"
+      ],
+      "provenance": "fault_injected_derivative"
+    },
+    {
+      "name": "MuJoCo duplicate_sample",
+      "integrity": "valid",
+      "authorization_at_execution": "not_applicable_passive_capture",
+      "capture_historical": "fail",
+      "capture_current": "fail",
+      "profile_validity_now": "within_declared_validity",
+      "receipt_recomputed_match": true,
+      "observations": 303,
+      "codes": [
+        "CHANNEL_COUNT_MISMATCH",
+        "CHANNEL_OFFSET_NOT_INCREASING",
+        "CHANNEL_CALIBRATION_UNVERIFIED",
+        "LIVE_CAPTURE_NOT_OBSERVED"
+      ],
+      "provenance": "fault_injected_derivative"
+    },
+    {
+      "name": "MuJoCo out_of_order",
+      "integrity": "invalid",
+      "authorization_at_execution": "not_applicable_passive_capture",
+      "capture_historical": "unknown",
+      "capture_current": "unknown",
+      "profile_validity_now": "within_declared_validity",
+      "receipt_recomputed_match": true,
+      "observations": 300,
+      "codes": [
+        "MONOTONIC_ROLLBACK",
+        "CAPTURE_SIGNED_FACTS_UNUSABLE"
+      ],
+      "provenance": "fault_injected_derivative"
+    },
+    {
+      "name": "MuJoCo delayed_receipt",
+      "integrity": "valid",
+      "authorization_at_execution": "not_applicable_passive_capture",
+      "capture_historical": "fail",
+      "capture_current": "fail",
+      "profile_validity_now": "within_declared_validity",
+      "receipt_recomputed_match": true,
+      "observations": 300,
+      "codes": [
+        "CHANNEL_CALIBRATION_UNVERIFIED",
+        "LOCAL_RECEIPT_INTERVAL_EXCEEDED",
+        "LIVE_CAPTURE_NOT_OBSERVED"
+      ],
+      "provenance": "fault_injected_derivative"
+    }
+  ],
+  "sources": [
+    {
+      "id": "simulation_execution",
+      "path": "examples/robot-black-box-simulation-capture/executed/execution.json",
+      "sha256": "6457d5b9d5e6362cb59ec52a6050a1c72a54deb78ce5b33d077cc1ea3b82f37a",
+      "bytes": 2390
+    },
+    {
+      "id": "simulation_trust",
+      "path": "examples/robot-black-box-simulation-capture/executed/trust.json",
+      "sha256": "a2a03f13092c35740e2748aba31f04aaefb4b2b955bff8e29c1d4089a10b3046",
+      "bytes": 768
+    },
+    {
+      "id": "simulation_heads",
+      "path": "examples/robot-black-box-simulation-capture/executed/latest-heads.json",
+      "sha256": "65a1e29de25a771aa48e2922a83204b1aa35beafc5ca9caf800fb086ae245ce9",
+      "bytes": 3094
+    },
+    {
+      "id": "simulation_observed_baseline",
+      "path": "examples/robot-black-box-simulation-capture/executed/cases/observed_baseline/capture-quality.json",
+      "sha256": "9d15ed8fb7e5a669c4c28532d639f1e8a7b213f98a28e09ccbed776699ae76f0",
+      "bytes": 14329
+    },
+    {
+      "id": "simulation_events_observed_baseline",
+      "path": "examples/robot-black-box-simulation-capture/executed/cases/observed_baseline/events.ndjson",
+      "sha256": "7fe8c79eb264c8b2c48b6d4985e2e1983c9852e1e140139793fa8cc5fb4f2f5b",
+      "bytes": 567952
+    },
+    {
+      "id": "simulation_dropped_sample",
+      "path": "examples/robot-black-box-simulation-capture/executed/cases/dropped_sample/capture-quality.json",
+      "sha256": "f893f2d70d2fc9e34fc7fe6fabfb2af4e10b979ed730bec21c627ca488139191",
+      "bytes": 32734
+    },
+    {
+      "id": "simulation_events_dropped_sample",
+      "path": "examples/robot-black-box-simulation-capture/executed/cases/dropped_sample/events.ndjson",
+      "sha256": "b6b62d9792da0c8f6cb33c716668ac26742fa39e4dda3b5032de86a7adad5498",
+      "bytes": 563485
+    },
+    {
+      "id": "simulation_duplicate_sample",
+      "path": "examples/robot-black-box-simulation-capture/executed/cases/duplicate_sample/capture-quality.json",
+      "sha256": "b295bb9608309f34726aae5245be9ec7460060cad93601e193e3ee565e05580c",
+      "bytes": 25180
+    },
+    {
+      "id": "simulation_events_duplicate_sample",
+      "path": "examples/robot-black-box-simulation-capture/executed/cases/duplicate_sample/events.ndjson",
+      "sha256": "63ce25c58ab6ec6b30a2e2c19c257d99d511e9be8886dcb1866ef215a48caf2e",
+      "bytes": 576055
+    },
+    {
+      "id": "simulation_out_of_order",
+      "path": "examples/robot-black-box-simulation-capture/executed/cases/out_of_order/capture-quality.json",
+      "sha256": "b0141c52453667764d3113f749d3b08a1e0dd7db88ed9aeb5f16db2411258814",
+      "bytes": 2814
+    },
+    {
+      "id": "simulation_events_out_of_order",
+      "path": "examples/robot-black-box-simulation-capture/executed/cases/out_of_order/events.ndjson",
+      "sha256": "a9bf3a69424807334332e55b4179042a86e99f02deb8bca55b411509f6c43e68",
+      "bytes": 567952
+    },
+    {
+      "id": "simulation_delayed_receipt",
+      "path": "examples/robot-black-box-simulation-capture/executed/cases/delayed_receipt/capture-quality.json",
+      "sha256": "4ea66f466d519ab7e405b0716014b80fcf7715573ef1382e268784b58fcebf77",
+      "bytes": 13900
+    },
+    {
+      "id": "simulation_events_delayed_receipt",
+      "path": "examples/robot-black-box-simulation-capture/executed/cases/delayed_receipt/events.ndjson",
+      "sha256": "ca528095cc312a285512653a64d0a76c0b5e0dbc74f15727f2a26b71cd155823",
+      "bytes": 569764
+    }
+  ],
+  "limits": [
+    "Passive synthetic sphere model; not a physical sensor or robot policy.",
+    "Simulation elapsed time is encoded against a declared artificial observation epoch; it is not wall time.",
+    "Source host timestamps, adapter receive monotonic timestamp and signed recorder received_at are separately observed; no cross-clock synchronization or calibrated delay bound is established.",
+    "Reordered source offsets violate the existing monotonic envelope contract: signatures remain recorded but verifier integrity is invalid and trusted facts are withheld.",
+    "Receipt interval threshold diagnoses local ingestion scheduling, not source freshness."
+  ]
+}

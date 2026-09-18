@@ -1,0 +1,185 @@
+{
+  "assembly_removed_before_recovery": true,
+  "at": "2026-09-18T11:15:26.473Z",
+  "backup_receipt_digest": "f68497c4c2f59945270e9f60be0dcf8ae05a738600244d9ce4d82ef92e083d8e",
+  "bootstrap_elapsed_ms": 87.26658399999997,
+  "bootstrap_pid": 14182,
+  "cases": 6,
+  "controller_pid": 14161,
+  "original_backup_removed_before_recovery": true,
+  "original_store_removed_before_recovery": true,
+  "private_worker_configs_removed": true,
+  "recovery_worker_private_key": false,
+  "restored_files": 47,
+  "schema": "rbb.custody.backup.recovery.execution.v1",
+  "scope": "isolated same-host directory backup; externally distributed trust/off-host replication not executed; timings observational not production RTO/RPO",
+  "steps": [
+    {
+      "elapsed_ms": 47.04308300000001,
+      "error": "",
+      "name": "acceptance",
+      "pid": 14173,
+      "result": {
+        "idempotent": false,
+        "receipt": {
+          "acceptance_id": "acceptance-public-001",
+          "accepted_at": "2026-09-18T11:15:26.027Z",
+          "authentication": {
+            "algorithm": "ed25519",
+            "event_digest": "7add25e289f9b8a23dc56e83377b47e800db677612bfd85551fdbe19fbde1858",
+            "key_id": "custodian-local-separate",
+            "signature": "gEulQQNqwstNSyDu1ma9C3UKyycs7MrcrQgPm9+bEfTGNCbt5fV4s1zl/Fd2hgpGMgOAlPjX/PnZF2QseCdNDQ=="
+          },
+          "custody": "separate_local_key_database_process_same_host",
+          "grant_digest": "02c5b20d0d30f914f6859af3bcf4e1c9008d8114c374b83833c660add3fe2e23",
+          "inventory_digest": "6642fca75b1cbdc5208b17d07952d930045c903e173b66ba7bfc526c44fbd191",
+          "issuer": "custodian-local-separate",
+          "manifest_digest": "6fd0596ca965543f794984f0b25263cff1a5fd6ac9cccd53d814c3ce13129be5",
+          "purpose": "investigation_review",
+          "schema": "rbb.custody.acceptance.v1",
+          "scope": "public_synthetic_portable_package_local_only",
+          "tenant": "tenant-a"
+        }
+      },
+      "status": 0
+    },
+    {
+      "elapsed_ms": 57.51649999999998,
+      "error": "",
+      "name": "backup_interruption",
+      "pid": 14174,
+      "result": null,
+      "status": 97
+    },
+    {
+      "elapsed_ms": 71.20079199999998,
+      "error": "",
+      "name": "backup_retry",
+      "pid": 14175,
+      "result": {
+        "idempotent": false,
+        "receipt": {
+          "acceptance_id": "acceptance-public-001",
+          "acceptance_receipt_digest": "9798d627d1b227b37b4142f887d3f0a8fc064e106c4915aef200cf3125b9dc7b",
+          "authentication": {
+            "algorithm": "ed25519",
+            "event_digest": "5181b63d298a30c0ffae217d607c7d50cf32630b27df3f4a9df944c38e28ef23",
+            "key_id": "custodian-local-separate",
+            "signature": "XzlJu4M3Lc0lYLjonhDa0GcUwAi/gSlk3jpyjEdfjr4nKfY8DLfyQmGxVQGu5AabR0aqX0TZ4oXRRakfgJS0AQ=="
+          },
+          "backup_id": "store-loss-backup-001",
+          "created_at": "2026-09-18T11:15:26.147Z",
+          "database_bytes": 192512,
+          "database_digest": "b63276a10a3d3922db141218b4f6dc69823230e231bb160b3f601377aa0fc056",
+          "intent_digest": "2b370f7d54fbe157e37bafd6bdfa33e3e761c6c6da4b4123989b471c4875d4fb",
+          "issuer": "custodian-local-separate",
+          "manifest_digest": "6fd0596ca965543f794984f0b25263cff1a5fd6ac9cccd53d814c3ce13129be5",
+          "purpose": "investigation_review",
+          "schema": "rbb.custody.backup.v1",
+          "scope": "public_synthetic_portable_package_local_only",
+          "tenant": "tenant-a"
+        },
+        "receipt_digest": "f68497c4c2f59945270e9f60be0dcf8ae05a738600244d9ce4d82ef92e083d8e"
+      },
+      "status": 0
+    },
+    {
+      "elapsed_ms": 45.325041,
+      "error": "",
+      "name": "backup_idempotent",
+      "pid": 14176,
+      "result": {
+        "idempotent": true,
+        "receipt": {
+          "acceptance_id": "acceptance-public-001",
+          "acceptance_receipt_digest": "9798d627d1b227b37b4142f887d3f0a8fc064e106c4915aef200cf3125b9dc7b",
+          "authentication": {
+            "algorithm": "ed25519",
+            "event_digest": "5181b63d298a30c0ffae217d607c7d50cf32630b27df3f4a9df944c38e28ef23",
+            "key_id": "custodian-local-separate",
+            "signature": "XzlJu4M3Lc0lYLjonhDa0GcUwAi/gSlk3jpyjEdfjr4nKfY8DLfyQmGxVQGu5AabR0aqX0TZ4oXRRakfgJS0AQ=="
+          },
+          "backup_id": "store-loss-backup-001",
+          "created_at": "2026-09-18T11:15:26.147Z",
+          "database_bytes": 192512,
+          "database_digest": "b63276a10a3d3922db141218b4f6dc69823230e231bb160b3f601377aa0fc056",
+          "intent_digest": "2b370f7d54fbe157e37bafd6bdfa33e3e761c6c6da4b4123989b471c4875d4fb",
+          "issuer": "custodian-local-separate",
+          "manifest_digest": "6fd0596ca965543f794984f0b25263cff1a5fd6ac9cccd53d814c3ce13129be5",
+          "purpose": "investigation_review",
+          "schema": "rbb.custody.backup.v1",
+          "scope": "public_synthetic_portable_package_local_only",
+          "tenant": "tenant-a"
+        },
+        "receipt_digest": "f68497c4c2f59945270e9f60be0dcf8ae05a738600244d9ce4d82ef92e083d8e"
+      },
+      "status": 0
+    },
+    {
+      "elapsed_ms": 31.413874999999962,
+      "error": "BACKUP_DATABASE_CHANGED\n",
+      "name": "reject_database",
+      "pid": 14177,
+      "result": null,
+      "status": 2
+    },
+    {
+      "elapsed_ms": 28.406000000000006,
+      "error": "BACKUP_RECEIPT_PIN_MISMATCH\n",
+      "name": "reject_receipt",
+      "pid": 14178,
+      "result": null,
+      "status": 2
+    },
+    {
+      "elapsed_ms": 31.752584000000013,
+      "error": "ENOENT: no such file or directory, lstat '<local-runtime-path-redacted> 2/GRC_Claw/.rbb/custody-backup-executed/damaged-missing/backup.sqlite'\n",
+      "name": "reject_missing",
+      "pid": 14179,
+      "result": null,
+      "status": 2
+    },
+    {
+      "elapsed_ms": 28.316708000000006,
+      "error": "BACKUP_RECEIPT_PIN_MISMATCH\n",
+      "name": "reject_wrong_pin",
+      "pid": 14180,
+      "result": null,
+      "status": 2
+    },
+    {
+      "elapsed_ms": 44.966042000000016,
+      "error": "",
+      "name": "recover_without_original_store",
+      "pid": 14181,
+      "result": {
+        "acceptance_receipt_verified": true,
+        "backup_receipt_verified": true,
+        "package_path": "<local-runtime-path-redacted> 2/GRC_Claw/.rbb/custody-backup-executed/recovery/package",
+        "private_key_required": false,
+        "receipt": {
+          "acceptance_id": "acceptance-public-001",
+          "accepted_at": "2026-09-18T11:15:26.027Z",
+          "authentication": {
+            "algorithm": "ed25519",
+            "event_digest": "7add25e289f9b8a23dc56e83377b47e800db677612bfd85551fdbe19fbde1858",
+            "key_id": "custodian-local-separate",
+            "signature": "gEulQQNqwstNSyDu1ma9C3UKyycs7MrcrQgPm9+bEfTGNCbt5fV4s1zl/Fd2hgpGMgOAlPjX/PnZF2QseCdNDQ=="
+          },
+          "custody": "separate_local_key_database_process_same_host",
+          "grant_digest": "02c5b20d0d30f914f6859af3bcf4e1c9008d8114c374b83833c660add3fe2e23",
+          "inventory_digest": "6642fca75b1cbdc5208b17d07952d930045c903e173b66ba7bfc526c44fbd191",
+          "issuer": "custodian-local-separate",
+          "manifest_digest": "6fd0596ca965543f794984f0b25263cff1a5fd6ac9cccd53d814c3ce13129be5",
+          "purpose": "investigation_review",
+          "schema": "rbb.custody.acceptance.v1",
+          "scope": "public_synthetic_portable_package_local_only",
+          "tenant": "tenant-a"
+        },
+        "restored_files": 47
+      },
+      "status": 0
+    }
+  ],
+  "trusted_bootstrap_sha256": "bbf433a63ac9cee3623a9b5073816fb858a6e4491134a4ee434b0ffa6c3c6e80"
+}

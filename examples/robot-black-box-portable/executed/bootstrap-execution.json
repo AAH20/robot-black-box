@@ -1,0 +1,1215 @@
+{
+  "schema": "rbb.bootstrap.execution.v1",
+  "at": "2026-09-18T11:02:20.923Z",
+  "pid": 11228,
+  "expected_manifest_sha256": "6fd0596ca965543f794984f0b25263cff1a5fd6ac9cccd53d814c3ce13129be5",
+  "trusted_bootstrap_sha256": "1c0a817c71c7abb10e79ef45055223c5cb1b9d8e41e6652f21f6fc6fbf1f004d",
+  "pin_origin": "same_host_demo_generated_not_independently_obtained",
+  "original_assembly_removed": true,
+  "bootstrap_copied_outside_package": true,
+  "cases": [
+    {
+      "name": "clean_detached",
+      "bootstrap_pid": 11229,
+      "exit_status": 0,
+      "report": {
+        "schema": "rbb.portable.bootstrap.v1",
+        "pin_match": true,
+        "inventory_match": true,
+        "included_code_executed": true,
+        "pin_origin": "reviewer_supplied_origin_not_attested",
+        "publisher_identity": "unknown",
+        "external_custody": "unknown",
+        "online_freshness": "unknown",
+        "errors": [],
+        "review_pid": 11230,
+        "review": {
+          "schema": "rbb.portable.review.v1",
+          "package_completeness": "complete",
+          "cryptographic_integrity": "valid",
+          "current_trust": "unknown_not_supplied",
+          "verifier_authenticity": "requires_external_pin_or_trusted_tool_copy",
+          "source_truth": "unknown",
+          "external_custody": "unknown",
+          "hardware_qualification": "unknown",
+          "cases": [
+            {
+              "name": "declared_baseline",
+              "as_of": "2026-09-18T10:30:40.609Z",
+              "historical_snapshot_integrity": "valid",
+              "evidence_completeness": "complete",
+              "anchoring": "local_current",
+              "authorization": {
+                "schema": "rbb.evaluation.v1",
+                "run_id": "capture-declared_baseline",
+                "bundle_digest": "76808d7e321e2802965afcdeaeb551f5ea8d2d75f60382425183488f93c3b522",
+                "policy_digest": "51074d8cd739c42d26ab088195223c632b9447d9daf07a878d0b3d3927c44730",
+                "trust_digest": "21be79d4702fe6c6bfecb2fda152a741d6d382081fe13bb904862c9e48b7aaa6",
+                "authorization": "pass",
+                "execution_evidence": "synthetic_observed",
+                "task_outcome": "success",
+                "results": [
+                  {
+                    "status": "pass",
+                    "code": "APPROVAL_VALID_FOR_EXECUTION",
+                    "event_ids": [
+                      "capture-declared_baseline-approval.recorded",
+                      "capture-declared_baseline-execution.observed"
+                    ]
+                  }
+                ],
+                "limitations": [
+                  "Local witness latestness only; same-machine producer, authority and witness custody.",
+                  "Synthetic observations do not prove input truth or physical safety."
+                ]
+              },
+              "capture_quality": {
+                "schema": "rbb.capture.quality.v1",
+                "run_id": "capture-declared_baseline",
+                "bundle_digest": "76808d7e321e2802965afcdeaeb551f5ea8d2d75f60382425183488f93c3b522",
+                "profile_digest": "021210f8529dc03f8f612782ea18080ac4a499eec7258024bc330a10c2358c15",
+                "evaluated_at": "2026-09-18T10:30:40.609Z",
+                "status": "unknown",
+                "channels": [
+                  {
+                    "id": "camera",
+                    "sensor_id": "synthetic-camera",
+                    "recorded_count": 1,
+                    "declared_expected_count": 1,
+                    "max_observed_interval_ms": null,
+                    "sampling_assurance": "unknown",
+                    "calibration_assurance": "unknown"
+                  }
+                ],
+                "results": [
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_SAMPLING_NOT_SPECIFIED",
+                    "event_ids": [
+                      "capture-declared_baseline-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera.max_interval_ms"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_CALIBRATION_UNVERIFIED",
+                    "event_ids": [
+                      "capture-declared_baseline-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera.calibration"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "LIVE_CAPTURE_NOT_OBSERVED",
+                    "event_ids": [],
+                    "pointer": "$"
+                  }
+                ],
+                "online_source_freshness": "unknown",
+                "calibration_assurance": "unknown",
+                "scope": "declared synthetic channel/time quality; separate from integrity and action authorization",
+                "limitations": [
+                  "No calibrated hardware measurement, source truth, complete physical capture, crash survival or aviation qualification.",
+                  "Receive/verify time and synthetic observation time are distinct; no live-source freshness inference."
+                ]
+              },
+              "receipt_authenticated": true
+            },
+            {
+              "name": "missing_channel",
+              "as_of": "2026-09-18T10:30:40.609Z",
+              "historical_snapshot_integrity": "valid",
+              "evidence_completeness": "complete",
+              "anchoring": "local_current",
+              "authorization": {
+                "schema": "rbb.evaluation.v1",
+                "run_id": "capture-missing_channel",
+                "bundle_digest": "08449a2c6ced297171cc2b6ca78f0cd7bb3d6179352e36a012a2279f8203210e",
+                "policy_digest": "51074d8cd739c42d26ab088195223c632b9447d9daf07a878d0b3d3927c44730",
+                "trust_digest": "21be79d4702fe6c6bfecb2fda152a741d6d382081fe13bb904862c9e48b7aaa6",
+                "authorization": "pass",
+                "execution_evidence": "synthetic_observed",
+                "task_outcome": "success",
+                "results": [
+                  {
+                    "status": "pass",
+                    "code": "APPROVAL_VALID_FOR_EXECUTION",
+                    "event_ids": [
+                      "capture-missing_channel-approval.recorded",
+                      "capture-missing_channel-execution.observed"
+                    ]
+                  }
+                ],
+                "limitations": [
+                  "Local witness latestness only; same-machine producer, authority and witness custody.",
+                  "Synthetic observations do not prove input truth or physical safety."
+                ]
+              },
+              "capture_quality": {
+                "schema": "rbb.capture.quality.v1",
+                "run_id": "capture-missing_channel",
+                "bundle_digest": "08449a2c6ced297171cc2b6ca78f0cd7bb3d6179352e36a012a2279f8203210e",
+                "profile_digest": "871dd39f94eb05fe1fdf0e1e4ae061d4ef161265f45efefd78bc64858205dbb9",
+                "evaluated_at": "2026-09-18T10:30:40.609Z",
+                "status": "fail",
+                "channels": [
+                  {
+                    "id": "camera",
+                    "sensor_id": "synthetic-required-second-camera",
+                    "recorded_count": 0,
+                    "declared_expected_count": 1,
+                    "max_observed_interval_ms": null,
+                    "sampling_assurance": "unknown",
+                    "calibration_assurance": "unknown"
+                  }
+                ],
+                "results": [
+                  {
+                    "status": "fail",
+                    "code": "REQUIRED_CHANNEL_MISSING",
+                    "event_ids": [],
+                    "pointer": "$.channels.camera"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_SAMPLING_NOT_SPECIFIED",
+                    "event_ids": [],
+                    "pointer": "$.channels.camera.max_interval_ms"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_CALIBRATION_UNVERIFIED",
+                    "event_ids": [],
+                    "pointer": "$.channels.camera.calibration"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "UNPROFILED_CHANNEL",
+                    "event_ids": [
+                      "capture-missing_channel-observation.recorded"
+                    ],
+                    "pointer": "$.payload.sensor_id"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "LIVE_CAPTURE_NOT_OBSERVED",
+                    "event_ids": [],
+                    "pointer": "$"
+                  }
+                ],
+                "online_source_freshness": "unknown",
+                "calibration_assurance": "unknown",
+                "scope": "declared synthetic channel/time quality; separate from integrity and action authorization",
+                "limitations": [
+                  "No calibrated hardware measurement, source truth, complete physical capture, crash survival or aviation qualification.",
+                  "Receive/verify time and synthetic observation time are distinct; no live-source freshness inference."
+                ]
+              },
+              "receipt_authenticated": true
+            },
+            {
+              "name": "wrong_units",
+              "as_of": "2026-09-18T10:30:40.609Z",
+              "historical_snapshot_integrity": "valid",
+              "evidence_completeness": "complete",
+              "anchoring": "local_current",
+              "authorization": {
+                "schema": "rbb.evaluation.v1",
+                "run_id": "capture-wrong_units",
+                "bundle_digest": "9265681c335dc984956b9ef1ff99f7fda5db789b75149889311e19dac9e090fa",
+                "policy_digest": "51074d8cd739c42d26ab088195223c632b9447d9daf07a878d0b3d3927c44730",
+                "trust_digest": "21be79d4702fe6c6bfecb2fda152a741d6d382081fe13bb904862c9e48b7aaa6",
+                "authorization": "pass",
+                "execution_evidence": "synthetic_observed",
+                "task_outcome": "success",
+                "results": [
+                  {
+                    "status": "pass",
+                    "code": "APPROVAL_VALID_FOR_EXECUTION",
+                    "event_ids": [
+                      "capture-wrong_units-approval.recorded",
+                      "capture-wrong_units-execution.observed"
+                    ]
+                  }
+                ],
+                "limitations": [
+                  "Local witness latestness only; same-machine producer, authority and witness custody.",
+                  "Synthetic observations do not prove input truth or physical safety."
+                ]
+              },
+              "capture_quality": {
+                "schema": "rbb.capture.quality.v1",
+                "run_id": "capture-wrong_units",
+                "bundle_digest": "9265681c335dc984956b9ef1ff99f7fda5db789b75149889311e19dac9e090fa",
+                "profile_digest": "6ea1af4a2d2dcf9e37ac15176b23829f12b28548dfaef9f6f924d4912c890514",
+                "evaluated_at": "2026-09-18T10:30:40.609Z",
+                "status": "fail",
+                "channels": [
+                  {
+                    "id": "camera",
+                    "sensor_id": "synthetic-camera",
+                    "recorded_count": 1,
+                    "declared_expected_count": 1,
+                    "max_observed_interval_ms": null,
+                    "sampling_assurance": "unknown",
+                    "calibration_assurance": "unknown"
+                  }
+                ],
+                "results": [
+                  {
+                    "status": "fail",
+                    "code": "CHANNEL_SEMANTICS_MISMATCH",
+                    "event_ids": [
+                      "capture-wrong_units-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_SAMPLING_NOT_SPECIFIED",
+                    "event_ids": [
+                      "capture-wrong_units-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera.max_interval_ms"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_CALIBRATION_UNVERIFIED",
+                    "event_ids": [
+                      "capture-wrong_units-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera.calibration"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "LIVE_CAPTURE_NOT_OBSERVED",
+                    "event_ids": [],
+                    "pointer": "$"
+                  }
+                ],
+                "online_source_freshness": "unknown",
+                "calibration_assurance": "unknown",
+                "scope": "declared synthetic channel/time quality; separate from integrity and action authorization",
+                "limitations": [
+                  "No calibrated hardware measurement, source truth, complete physical capture, crash survival or aviation qualification.",
+                  "Receive/verify time and synthetic observation time are distinct; no live-source freshness inference."
+                ]
+              },
+              "receipt_authenticated": true
+            },
+            {
+              "name": "time_rollback",
+              "as_of": "2026-09-18T10:30:40.609Z",
+              "historical_snapshot_integrity": "valid",
+              "evidence_completeness": "complete",
+              "anchoring": "local_current",
+              "authorization": {
+                "schema": "rbb.evaluation.v1",
+                "run_id": "capture-time_rollback",
+                "bundle_digest": "90ab91b0d1e49f6fcafa4ed861dc0226dd1871887adfe2054a4b584adede3ace",
+                "policy_digest": "51074d8cd739c42d26ab088195223c632b9447d9daf07a878d0b3d3927c44730",
+                "trust_digest": "21be79d4702fe6c6bfecb2fda152a741d6d382081fe13bb904862c9e48b7aaa6",
+                "authorization": "pass",
+                "execution_evidence": "synthetic_observed",
+                "task_outcome": "success",
+                "results": [
+                  {
+                    "status": "pass",
+                    "code": "APPROVAL_VALID_FOR_EXECUTION",
+                    "event_ids": [
+                      "capture-time_rollback-approval.recorded",
+                      "capture-time_rollback-execution.observed"
+                    ]
+                  }
+                ],
+                "limitations": [
+                  "Local witness latestness only; same-machine producer, authority and witness custody.",
+                  "Synthetic observations do not prove input truth or physical safety."
+                ]
+              },
+              "capture_quality": {
+                "schema": "rbb.capture.quality.v1",
+                "run_id": "capture-time_rollback",
+                "bundle_digest": "90ab91b0d1e49f6fcafa4ed861dc0226dd1871887adfe2054a4b584adede3ace",
+                "profile_digest": "629eae092ffe8af101be1b2a5041570e0b8c6423010d1779cb7a3b64b11329ed",
+                "evaluated_at": "2026-09-18T10:30:40.609Z",
+                "status": "fail",
+                "channels": [
+                  {
+                    "id": "camera",
+                    "sensor_id": "synthetic-camera",
+                    "recorded_count": 1,
+                    "declared_expected_count": 1,
+                    "max_observed_interval_ms": null,
+                    "sampling_assurance": "unknown",
+                    "calibration_assurance": "unknown"
+                  }
+                ],
+                "results": [
+                  {
+                    "status": "fail",
+                    "code": "OBSERVATION_TIME_ROLLBACK",
+                    "event_ids": [
+                      "capture-time_rollback-run.started",
+                      "capture-time_rollback-observation.recorded"
+                    ],
+                    "pointer": "$.observed_at"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_SAMPLING_NOT_SPECIFIED",
+                    "event_ids": [
+                      "capture-time_rollback-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera.max_interval_ms"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_CALIBRATION_UNVERIFIED",
+                    "event_ids": [
+                      "capture-time_rollback-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera.calibration"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "LIVE_CAPTURE_NOT_OBSERVED",
+                    "event_ids": [],
+                    "pointer": "$"
+                  }
+                ],
+                "online_source_freshness": "unknown",
+                "calibration_assurance": "unknown",
+                "scope": "declared synthetic channel/time quality; separate from integrity and action authorization",
+                "limitations": [
+                  "No calibrated hardware measurement, source truth, complete physical capture, crash survival or aviation qualification.",
+                  "Receive/verify time and synthetic observation time are distinct; no live-source freshness inference."
+                ]
+              },
+              "receipt_authenticated": true
+            },
+            {
+              "name": "cadence_gap",
+              "as_of": "2026-09-18T10:30:40.609Z",
+              "historical_snapshot_integrity": "valid",
+              "evidence_completeness": "complete",
+              "anchoring": "local_current",
+              "authorization": {
+                "schema": "rbb.evaluation.v1",
+                "run_id": "capture-cadence_gap",
+                "bundle_digest": "6630441d52138c0bf910063cb27a60ec9629ca41e2d65edd73b687097f001e78",
+                "policy_digest": "51074d8cd739c42d26ab088195223c632b9447d9daf07a878d0b3d3927c44730",
+                "trust_digest": "21be79d4702fe6c6bfecb2fda152a741d6d382081fe13bb904862c9e48b7aaa6",
+                "authorization": "pass",
+                "execution_evidence": "synthetic_observed",
+                "task_outcome": "success",
+                "results": [
+                  {
+                    "status": "pass",
+                    "code": "APPROVAL_VALID_FOR_EXECUTION",
+                    "event_ids": [
+                      "capture-cadence_gap-approval.recorded",
+                      "capture-cadence_gap-execution.observed"
+                    ]
+                  }
+                ],
+                "limitations": [
+                  "Local witness latestness only; same-machine producer, authority and witness custody.",
+                  "Synthetic observations do not prove input truth or physical safety."
+                ]
+              },
+              "capture_quality": {
+                "schema": "rbb.capture.quality.v1",
+                "run_id": "capture-cadence_gap",
+                "bundle_digest": "6630441d52138c0bf910063cb27a60ec9629ca41e2d65edd73b687097f001e78",
+                "profile_digest": "f37a089ef9ebbe07025af3282fab7e0ffd224d6735e4bfbfa93967b68fc0a937",
+                "evaluated_at": "2026-09-18T10:30:40.609Z",
+                "status": "fail",
+                "channels": [
+                  {
+                    "id": "camera",
+                    "sensor_id": "synthetic-camera",
+                    "recorded_count": 2,
+                    "declared_expected_count": 2,
+                    "max_observed_interval_ms": 500,
+                    "sampling_assurance": "fail",
+                    "calibration_assurance": "unknown"
+                  }
+                ],
+                "results": [
+                  {
+                    "status": "fail",
+                    "code": "CHANNEL_INTERVAL_EXCEEDED",
+                    "event_ids": [
+                      "capture-cadence_gap-observation.recorded",
+                      "capture-cadence_gap-second-observation"
+                    ],
+                    "pointer": "$.channels.camera.max_interval_ms"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_CALIBRATION_UNVERIFIED",
+                    "event_ids": [
+                      "capture-cadence_gap-observation.recorded",
+                      "capture-cadence_gap-second-observation"
+                    ],
+                    "pointer": "$.channels.camera.calibration"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "LIVE_CAPTURE_NOT_OBSERVED",
+                    "event_ids": [],
+                    "pointer": "$"
+                  }
+                ],
+                "online_source_freshness": "unknown",
+                "calibration_assurance": "unknown",
+                "scope": "declared synthetic channel/time quality; separate from integrity and action authorization",
+                "limitations": [
+                  "No calibrated hardware measurement, source truth, complete physical capture, crash survival or aviation qualification.",
+                  "Receive/verify time and synthetic observation time are distinct; no live-source freshness inference."
+                ]
+              },
+              "receipt_authenticated": true
+            },
+            {
+              "name": "uncertain_clock",
+              "as_of": "2026-09-18T10:30:40.609Z",
+              "historical_snapshot_integrity": "valid",
+              "evidence_completeness": "complete",
+              "anchoring": "local_current",
+              "authorization": {
+                "schema": "rbb.evaluation.v1",
+                "run_id": "capture-uncertain_clock",
+                "bundle_digest": "1a50880da2b8a8d080ba3a889f22e6d0a8ef9a9e61607a4bb1cd2c36d4733c89",
+                "policy_digest": "51074d8cd739c42d26ab088195223c632b9447d9daf07a878d0b3d3927c44730",
+                "trust_digest": "21be79d4702fe6c6bfecb2fda152a741d6d382081fe13bb904862c9e48b7aaa6",
+                "authorization": "pass",
+                "execution_evidence": "synthetic_observed",
+                "task_outcome": "success",
+                "results": [
+                  {
+                    "status": "pass",
+                    "code": "APPROVAL_VALID_FOR_EXECUTION",
+                    "event_ids": [
+                      "capture-uncertain_clock-approval.recorded",
+                      "capture-uncertain_clock-execution.observed"
+                    ]
+                  }
+                ],
+                "limitations": [
+                  "Local witness latestness only; same-machine producer, authority and witness custody.",
+                  "Synthetic observations do not prove input truth or physical safety."
+                ]
+              },
+              "capture_quality": {
+                "schema": "rbb.capture.quality.v1",
+                "run_id": "capture-uncertain_clock",
+                "bundle_digest": "1a50880da2b8a8d080ba3a889f22e6d0a8ef9a9e61607a4bb1cd2c36d4733c89",
+                "profile_digest": "161c0a0f0755a96e5f28789ca6bf07cd20ad6b94810519fbdcdc105862e3c6cf",
+                "evaluated_at": "2026-09-18T10:30:40.609Z",
+                "status": "unknown",
+                "channels": [
+                  {
+                    "id": "camera",
+                    "sensor_id": "synthetic-camera",
+                    "recorded_count": 1,
+                    "declared_expected_count": 1,
+                    "max_observed_interval_ms": null,
+                    "sampling_assurance": "unknown",
+                    "calibration_assurance": "unknown"
+                  }
+                ],
+                "results": [
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_CLOCK_UNCERTAIN",
+                    "event_ids": [
+                      "capture-uncertain_clock-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera.clock_id"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_SAMPLING_NOT_SPECIFIED",
+                    "event_ids": [
+                      "capture-uncertain_clock-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera.max_interval_ms"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_CALIBRATION_UNVERIFIED",
+                    "event_ids": [
+                      "capture-uncertain_clock-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera.calibration"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "LIVE_CAPTURE_NOT_OBSERVED",
+                    "event_ids": [],
+                    "pointer": "$"
+                  }
+                ],
+                "online_source_freshness": "unknown",
+                "calibration_assurance": "unknown",
+                "scope": "declared synthetic channel/time quality; separate from integrity and action authorization",
+                "limitations": [
+                  "No calibrated hardware measurement, source truth, complete physical capture, crash survival or aviation qualification.",
+                  "Receive/verify time and synthetic observation time are distinct; no live-source freshness inference."
+                ]
+              },
+              "receipt_authenticated": true
+            }
+          ],
+          "errors": [],
+          "transport_manifest_sha256": "6fd0596ca965543f794984f0b25263cff1a5fd6ac9cccd53d814c3ce13129be5",
+          "historical_trust": "included_publisher_snapshot_as_of_receipts_not_independent_enrollment"
+        },
+        "status": "verified_bytes_against_reviewer_pin"
+      }
+    },
+    {
+      "name": "coherent_tool_manifest_rewrite",
+      "bootstrap_pid": 11231,
+      "exit_status": 2,
+      "report": {
+        "schema": "rbb.portable.bootstrap.v1",
+        "pin_match": false,
+        "inventory_match": false,
+        "included_code_executed": false,
+        "pin_origin": "reviewer_supplied_origin_not_attested",
+        "publisher_identity": "unknown",
+        "external_custody": "unknown",
+        "online_freshness": "unknown",
+        "errors": [
+          "EXTERNAL_PIN_MISMATCH"
+        ],
+        "status": "rejected"
+      },
+      "benign_sentinel_absent": true
+    },
+    {
+      "name": "coherent_evidence_manifest_rewrite",
+      "bootstrap_pid": 11232,
+      "exit_status": 2,
+      "report": {
+        "schema": "rbb.portable.bootstrap.v1",
+        "pin_match": false,
+        "inventory_match": false,
+        "included_code_executed": false,
+        "pin_origin": "reviewer_supplied_origin_not_attested",
+        "publisher_identity": "unknown",
+        "external_custody": "unknown",
+        "online_freshness": "unknown",
+        "errors": [
+          "EXTERNAL_PIN_MISMATCH"
+        ],
+        "status": "rejected"
+      },
+      "benign_sentinel_absent": true
+    },
+    {
+      "name": "wrong_pin",
+      "bootstrap_pid": 11233,
+      "exit_status": 2,
+      "report": {
+        "schema": "rbb.portable.bootstrap.v1",
+        "pin_match": false,
+        "inventory_match": false,
+        "included_code_executed": false,
+        "pin_origin": "reviewer_supplied_origin_not_attested",
+        "publisher_identity": "unknown",
+        "external_custody": "unknown",
+        "online_freshness": "unknown",
+        "errors": [
+          "EXTERNAL_PIN_MISMATCH"
+        ],
+        "status": "rejected"
+      }
+    },
+    {
+      "name": "absent_pin",
+      "bootstrap_pid": 11234,
+      "exit_status": 2,
+      "report": {
+        "schema": "rbb.portable.bootstrap.v1",
+        "pin_match": false,
+        "inventory_match": false,
+        "included_code_executed": false,
+        "pin_origin": "reviewer_supplied_origin_not_attested",
+        "publisher_identity": "unknown",
+        "external_custody": "unknown",
+        "online_freshness": "unknown",
+        "errors": [
+          "EXTERNAL_PIN_REQUIRED"
+        ],
+        "status": "rejected"
+      }
+    },
+    {
+      "name": "clean_copy_recovery",
+      "bootstrap_pid": 11235,
+      "exit_status": 0,
+      "report": {
+        "schema": "rbb.portable.bootstrap.v1",
+        "pin_match": true,
+        "inventory_match": true,
+        "included_code_executed": true,
+        "pin_origin": "reviewer_supplied_origin_not_attested",
+        "publisher_identity": "unknown",
+        "external_custody": "unknown",
+        "online_freshness": "unknown",
+        "errors": [],
+        "review_pid": 11236,
+        "review": {
+          "schema": "rbb.portable.review.v1",
+          "package_completeness": "complete",
+          "cryptographic_integrity": "valid",
+          "current_trust": "unknown_not_supplied",
+          "verifier_authenticity": "requires_external_pin_or_trusted_tool_copy",
+          "source_truth": "unknown",
+          "external_custody": "unknown",
+          "hardware_qualification": "unknown",
+          "cases": [
+            {
+              "name": "declared_baseline",
+              "as_of": "2026-09-18T10:30:40.609Z",
+              "historical_snapshot_integrity": "valid",
+              "evidence_completeness": "complete",
+              "anchoring": "local_current",
+              "authorization": {
+                "schema": "rbb.evaluation.v1",
+                "run_id": "capture-declared_baseline",
+                "bundle_digest": "76808d7e321e2802965afcdeaeb551f5ea8d2d75f60382425183488f93c3b522",
+                "policy_digest": "51074d8cd739c42d26ab088195223c632b9447d9daf07a878d0b3d3927c44730",
+                "trust_digest": "21be79d4702fe6c6bfecb2fda152a741d6d382081fe13bb904862c9e48b7aaa6",
+                "authorization": "pass",
+                "execution_evidence": "synthetic_observed",
+                "task_outcome": "success",
+                "results": [
+                  {
+                    "status": "pass",
+                    "code": "APPROVAL_VALID_FOR_EXECUTION",
+                    "event_ids": [
+                      "capture-declared_baseline-approval.recorded",
+                      "capture-declared_baseline-execution.observed"
+                    ]
+                  }
+                ],
+                "limitations": [
+                  "Local witness latestness only; same-machine producer, authority and witness custody.",
+                  "Synthetic observations do not prove input truth or physical safety."
+                ]
+              },
+              "capture_quality": {
+                "schema": "rbb.capture.quality.v1",
+                "run_id": "capture-declared_baseline",
+                "bundle_digest": "76808d7e321e2802965afcdeaeb551f5ea8d2d75f60382425183488f93c3b522",
+                "profile_digest": "021210f8529dc03f8f612782ea18080ac4a499eec7258024bc330a10c2358c15",
+                "evaluated_at": "2026-09-18T10:30:40.609Z",
+                "status": "unknown",
+                "channels": [
+                  {
+                    "id": "camera",
+                    "sensor_id": "synthetic-camera",
+                    "recorded_count": 1,
+                    "declared_expected_count": 1,
+                    "max_observed_interval_ms": null,
+                    "sampling_assurance": "unknown",
+                    "calibration_assurance": "unknown"
+                  }
+                ],
+                "results": [
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_SAMPLING_NOT_SPECIFIED",
+                    "event_ids": [
+                      "capture-declared_baseline-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera.max_interval_ms"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_CALIBRATION_UNVERIFIED",
+                    "event_ids": [
+                      "capture-declared_baseline-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera.calibration"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "LIVE_CAPTURE_NOT_OBSERVED",
+                    "event_ids": [],
+                    "pointer": "$"
+                  }
+                ],
+                "online_source_freshness": "unknown",
+                "calibration_assurance": "unknown",
+                "scope": "declared synthetic channel/time quality; separate from integrity and action authorization",
+                "limitations": [
+                  "No calibrated hardware measurement, source truth, complete physical capture, crash survival or aviation qualification.",
+                  "Receive/verify time and synthetic observation time are distinct; no live-source freshness inference."
+                ]
+              },
+              "receipt_authenticated": true
+            },
+            {
+              "name": "missing_channel",
+              "as_of": "2026-09-18T10:30:40.609Z",
+              "historical_snapshot_integrity": "valid",
+              "evidence_completeness": "complete",
+              "anchoring": "local_current",
+              "authorization": {
+                "schema": "rbb.evaluation.v1",
+                "run_id": "capture-missing_channel",
+                "bundle_digest": "08449a2c6ced297171cc2b6ca78f0cd7bb3d6179352e36a012a2279f8203210e",
+                "policy_digest": "51074d8cd739c42d26ab088195223c632b9447d9daf07a878d0b3d3927c44730",
+                "trust_digest": "21be79d4702fe6c6bfecb2fda152a741d6d382081fe13bb904862c9e48b7aaa6",
+                "authorization": "pass",
+                "execution_evidence": "synthetic_observed",
+                "task_outcome": "success",
+                "results": [
+                  {
+                    "status": "pass",
+                    "code": "APPROVAL_VALID_FOR_EXECUTION",
+                    "event_ids": [
+                      "capture-missing_channel-approval.recorded",
+                      "capture-missing_channel-execution.observed"
+                    ]
+                  }
+                ],
+                "limitations": [
+                  "Local witness latestness only; same-machine producer, authority and witness custody.",
+                  "Synthetic observations do not prove input truth or physical safety."
+                ]
+              },
+              "capture_quality": {
+                "schema": "rbb.capture.quality.v1",
+                "run_id": "capture-missing_channel",
+                "bundle_digest": "08449a2c6ced297171cc2b6ca78f0cd7bb3d6179352e36a012a2279f8203210e",
+                "profile_digest": "871dd39f94eb05fe1fdf0e1e4ae061d4ef161265f45efefd78bc64858205dbb9",
+                "evaluated_at": "2026-09-18T10:30:40.609Z",
+                "status": "fail",
+                "channels": [
+                  {
+                    "id": "camera",
+                    "sensor_id": "synthetic-required-second-camera",
+                    "recorded_count": 0,
+                    "declared_expected_count": 1,
+                    "max_observed_interval_ms": null,
+                    "sampling_assurance": "unknown",
+                    "calibration_assurance": "unknown"
+                  }
+                ],
+                "results": [
+                  {
+                    "status": "fail",
+                    "code": "REQUIRED_CHANNEL_MISSING",
+                    "event_ids": [],
+                    "pointer": "$.channels.camera"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_SAMPLING_NOT_SPECIFIED",
+                    "event_ids": [],
+                    "pointer": "$.channels.camera.max_interval_ms"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_CALIBRATION_UNVERIFIED",
+                    "event_ids": [],
+                    "pointer": "$.channels.camera.calibration"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "UNPROFILED_CHANNEL",
+                    "event_ids": [
+                      "capture-missing_channel-observation.recorded"
+                    ],
+                    "pointer": "$.payload.sensor_id"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "LIVE_CAPTURE_NOT_OBSERVED",
+                    "event_ids": [],
+                    "pointer": "$"
+                  }
+                ],
+                "online_source_freshness": "unknown",
+                "calibration_assurance": "unknown",
+                "scope": "declared synthetic channel/time quality; separate from integrity and action authorization",
+                "limitations": [
+                  "No calibrated hardware measurement, source truth, complete physical capture, crash survival or aviation qualification.",
+                  "Receive/verify time and synthetic observation time are distinct; no live-source freshness inference."
+                ]
+              },
+              "receipt_authenticated": true
+            },
+            {
+              "name": "wrong_units",
+              "as_of": "2026-09-18T10:30:40.609Z",
+              "historical_snapshot_integrity": "valid",
+              "evidence_completeness": "complete",
+              "anchoring": "local_current",
+              "authorization": {
+                "schema": "rbb.evaluation.v1",
+                "run_id": "capture-wrong_units",
+                "bundle_digest": "9265681c335dc984956b9ef1ff99f7fda5db789b75149889311e19dac9e090fa",
+                "policy_digest": "51074d8cd739c42d26ab088195223c632b9447d9daf07a878d0b3d3927c44730",
+                "trust_digest": "21be79d4702fe6c6bfecb2fda152a741d6d382081fe13bb904862c9e48b7aaa6",
+                "authorization": "pass",
+                "execution_evidence": "synthetic_observed",
+                "task_outcome": "success",
+                "results": [
+                  {
+                    "status": "pass",
+                    "code": "APPROVAL_VALID_FOR_EXECUTION",
+                    "event_ids": [
+                      "capture-wrong_units-approval.recorded",
+                      "capture-wrong_units-execution.observed"
+                    ]
+                  }
+                ],
+                "limitations": [
+                  "Local witness latestness only; same-machine producer, authority and witness custody.",
+                  "Synthetic observations do not prove input truth or physical safety."
+                ]
+              },
+              "capture_quality": {
+                "schema": "rbb.capture.quality.v1",
+                "run_id": "capture-wrong_units",
+                "bundle_digest": "9265681c335dc984956b9ef1ff99f7fda5db789b75149889311e19dac9e090fa",
+                "profile_digest": "6ea1af4a2d2dcf9e37ac15176b23829f12b28548dfaef9f6f924d4912c890514",
+                "evaluated_at": "2026-09-18T10:30:40.609Z",
+                "status": "fail",
+                "channels": [
+                  {
+                    "id": "camera",
+                    "sensor_id": "synthetic-camera",
+                    "recorded_count": 1,
+                    "declared_expected_count": 1,
+                    "max_observed_interval_ms": null,
+                    "sampling_assurance": "unknown",
+                    "calibration_assurance": "unknown"
+                  }
+                ],
+                "results": [
+                  {
+                    "status": "fail",
+                    "code": "CHANNEL_SEMANTICS_MISMATCH",
+                    "event_ids": [
+                      "capture-wrong_units-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_SAMPLING_NOT_SPECIFIED",
+                    "event_ids": [
+                      "capture-wrong_units-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera.max_interval_ms"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_CALIBRATION_UNVERIFIED",
+                    "event_ids": [
+                      "capture-wrong_units-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera.calibration"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "LIVE_CAPTURE_NOT_OBSERVED",
+                    "event_ids": [],
+                    "pointer": "$"
+                  }
+                ],
+                "online_source_freshness": "unknown",
+                "calibration_assurance": "unknown",
+                "scope": "declared synthetic channel/time quality; separate from integrity and action authorization",
+                "limitations": [
+                  "No calibrated hardware measurement, source truth, complete physical capture, crash survival or aviation qualification.",
+                  "Receive/verify time and synthetic observation time are distinct; no live-source freshness inference."
+                ]
+              },
+              "receipt_authenticated": true
+            },
+            {
+              "name": "time_rollback",
+              "as_of": "2026-09-18T10:30:40.609Z",
+              "historical_snapshot_integrity": "valid",
+              "evidence_completeness": "complete",
+              "anchoring": "local_current",
+              "authorization": {
+                "schema": "rbb.evaluation.v1",
+                "run_id": "capture-time_rollback",
+                "bundle_digest": "90ab91b0d1e49f6fcafa4ed861dc0226dd1871887adfe2054a4b584adede3ace",
+                "policy_digest": "51074d8cd739c42d26ab088195223c632b9447d9daf07a878d0b3d3927c44730",
+                "trust_digest": "21be79d4702fe6c6bfecb2fda152a741d6d382081fe13bb904862c9e48b7aaa6",
+                "authorization": "pass",
+                "execution_evidence": "synthetic_observed",
+                "task_outcome": "success",
+                "results": [
+                  {
+                    "status": "pass",
+                    "code": "APPROVAL_VALID_FOR_EXECUTION",
+                    "event_ids": [
+                      "capture-time_rollback-approval.recorded",
+                      "capture-time_rollback-execution.observed"
+                    ]
+                  }
+                ],
+                "limitations": [
+                  "Local witness latestness only; same-machine producer, authority and witness custody.",
+                  "Synthetic observations do not prove input truth or physical safety."
+                ]
+              },
+              "capture_quality": {
+                "schema": "rbb.capture.quality.v1",
+                "run_id": "capture-time_rollback",
+                "bundle_digest": "90ab91b0d1e49f6fcafa4ed861dc0226dd1871887adfe2054a4b584adede3ace",
+                "profile_digest": "629eae092ffe8af101be1b2a5041570e0b8c6423010d1779cb7a3b64b11329ed",
+                "evaluated_at": "2026-09-18T10:30:40.609Z",
+                "status": "fail",
+                "channels": [
+                  {
+                    "id": "camera",
+                    "sensor_id": "synthetic-camera",
+                    "recorded_count": 1,
+                    "declared_expected_count": 1,
+                    "max_observed_interval_ms": null,
+                    "sampling_assurance": "unknown",
+                    "calibration_assurance": "unknown"
+                  }
+                ],
+                "results": [
+                  {
+                    "status": "fail",
+                    "code": "OBSERVATION_TIME_ROLLBACK",
+                    "event_ids": [
+                      "capture-time_rollback-run.started",
+                      "capture-time_rollback-observation.recorded"
+                    ],
+                    "pointer": "$.observed_at"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_SAMPLING_NOT_SPECIFIED",
+                    "event_ids": [
+                      "capture-time_rollback-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera.max_interval_ms"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_CALIBRATION_UNVERIFIED",
+                    "event_ids": [
+                      "capture-time_rollback-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera.calibration"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "LIVE_CAPTURE_NOT_OBSERVED",
+                    "event_ids": [],
+                    "pointer": "$"
+                  }
+                ],
+                "online_source_freshness": "unknown",
+                "calibration_assurance": "unknown",
+                "scope": "declared synthetic channel/time quality; separate from integrity and action authorization",
+                "limitations": [
+                  "No calibrated hardware measurement, source truth, complete physical capture, crash survival or aviation qualification.",
+                  "Receive/verify time and synthetic observation time are distinct; no live-source freshness inference."
+                ]
+              },
+              "receipt_authenticated": true
+            },
+            {
+              "name": "cadence_gap",
+              "as_of": "2026-09-18T10:30:40.609Z",
+              "historical_snapshot_integrity": "valid",
+              "evidence_completeness": "complete",
+              "anchoring": "local_current",
+              "authorization": {
+                "schema": "rbb.evaluation.v1",
+                "run_id": "capture-cadence_gap",
+                "bundle_digest": "6630441d52138c0bf910063cb27a60ec9629ca41e2d65edd73b687097f001e78",
+                "policy_digest": "51074d8cd739c42d26ab088195223c632b9447d9daf07a878d0b3d3927c44730",
+                "trust_digest": "21be79d4702fe6c6bfecb2fda152a741d6d382081fe13bb904862c9e48b7aaa6",
+                "authorization": "pass",
+                "execution_evidence": "synthetic_observed",
+                "task_outcome": "success",
+                "results": [
+                  {
+                    "status": "pass",
+                    "code": "APPROVAL_VALID_FOR_EXECUTION",
+                    "event_ids": [
+                      "capture-cadence_gap-approval.recorded",
+                      "capture-cadence_gap-execution.observed"
+                    ]
+                  }
+                ],
+                "limitations": [
+                  "Local witness latestness only; same-machine producer, authority and witness custody.",
+                  "Synthetic observations do not prove input truth or physical safety."
+                ]
+              },
+              "capture_quality": {
+                "schema": "rbb.capture.quality.v1",
+                "run_id": "capture-cadence_gap",
+                "bundle_digest": "6630441d52138c0bf910063cb27a60ec9629ca41e2d65edd73b687097f001e78",
+                "profile_digest": "f37a089ef9ebbe07025af3282fab7e0ffd224d6735e4bfbfa93967b68fc0a937",
+                "evaluated_at": "2026-09-18T10:30:40.609Z",
+                "status": "fail",
+                "channels": [
+                  {
+                    "id": "camera",
+                    "sensor_id": "synthetic-camera",
+                    "recorded_count": 2,
+                    "declared_expected_count": 2,
+                    "max_observed_interval_ms": 500,
+                    "sampling_assurance": "fail",
+                    "calibration_assurance": "unknown"
+                  }
+                ],
+                "results": [
+                  {
+                    "status": "fail",
+                    "code": "CHANNEL_INTERVAL_EXCEEDED",
+                    "event_ids": [
+                      "capture-cadence_gap-observation.recorded",
+                      "capture-cadence_gap-second-observation"
+                    ],
+                    "pointer": "$.channels.camera.max_interval_ms"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_CALIBRATION_UNVERIFIED",
+                    "event_ids": [
+                      "capture-cadence_gap-observation.recorded",
+                      "capture-cadence_gap-second-observation"
+                    ],
+                    "pointer": "$.channels.camera.calibration"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "LIVE_CAPTURE_NOT_OBSERVED",
+                    "event_ids": [],
+                    "pointer": "$"
+                  }
+                ],
+                "online_source_freshness": "unknown",
+                "calibration_assurance": "unknown",
+                "scope": "declared synthetic channel/time quality; separate from integrity and action authorization",
+                "limitations": [
+                  "No calibrated hardware measurement, source truth, complete physical capture, crash survival or aviation qualification.",
+                  "Receive/verify time and synthetic observation time are distinct; no live-source freshness inference."
+                ]
+              },
+              "receipt_authenticated": true
+            },
+            {
+              "name": "uncertain_clock",
+              "as_of": "2026-09-18T10:30:40.609Z",
+              "historical_snapshot_integrity": "valid",
+              "evidence_completeness": "complete",
+              "anchoring": "local_current",
+              "authorization": {
+                "schema": "rbb.evaluation.v1",
+                "run_id": "capture-uncertain_clock",
+                "bundle_digest": "1a50880da2b8a8d080ba3a889f22e6d0a8ef9a9e61607a4bb1cd2c36d4733c89",
+                "policy_digest": "51074d8cd739c42d26ab088195223c632b9447d9daf07a878d0b3d3927c44730",
+                "trust_digest": "21be79d4702fe6c6bfecb2fda152a741d6d382081fe13bb904862c9e48b7aaa6",
+                "authorization": "pass",
+                "execution_evidence": "synthetic_observed",
+                "task_outcome": "success",
+                "results": [
+                  {
+                    "status": "pass",
+                    "code": "APPROVAL_VALID_FOR_EXECUTION",
+                    "event_ids": [
+                      "capture-uncertain_clock-approval.recorded",
+                      "capture-uncertain_clock-execution.observed"
+                    ]
+                  }
+                ],
+                "limitations": [
+                  "Local witness latestness only; same-machine producer, authority and witness custody.",
+                  "Synthetic observations do not prove input truth or physical safety."
+                ]
+              },
+              "capture_quality": {
+                "schema": "rbb.capture.quality.v1",
+                "run_id": "capture-uncertain_clock",
+                "bundle_digest": "1a50880da2b8a8d080ba3a889f22e6d0a8ef9a9e61607a4bb1cd2c36d4733c89",
+                "profile_digest": "161c0a0f0755a96e5f28789ca6bf07cd20ad6b94810519fbdcdc105862e3c6cf",
+                "evaluated_at": "2026-09-18T10:30:40.609Z",
+                "status": "unknown",
+                "channels": [
+                  {
+                    "id": "camera",
+                    "sensor_id": "synthetic-camera",
+                    "recorded_count": 1,
+                    "declared_expected_count": 1,
+                    "max_observed_interval_ms": null,
+                    "sampling_assurance": "unknown",
+                    "calibration_assurance": "unknown"
+                  }
+                ],
+                "results": [
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_CLOCK_UNCERTAIN",
+                    "event_ids": [
+                      "capture-uncertain_clock-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera.clock_id"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_SAMPLING_NOT_SPECIFIED",
+                    "event_ids": [
+                      "capture-uncertain_clock-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera.max_interval_ms"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "CHANNEL_CALIBRATION_UNVERIFIED",
+                    "event_ids": [
+                      "capture-uncertain_clock-observation.recorded"
+                    ],
+                    "pointer": "$.channels.camera.calibration"
+                  },
+                  {
+                    "status": "unknown",
+                    "code": "LIVE_CAPTURE_NOT_OBSERVED",
+                    "event_ids": [],
+                    "pointer": "$"
+                  }
+                ],
+                "online_source_freshness": "unknown",
+                "calibration_assurance": "unknown",
+                "scope": "declared synthetic channel/time quality; separate from integrity and action authorization",
+                "limitations": [
+                  "No calibrated hardware measurement, source truth, complete physical capture, crash survival or aviation qualification.",
+                  "Receive/verify time and synthetic observation time are distinct; no live-source freshness inference."
+                ]
+              },
+              "receipt_authenticated": true
+            }
+          ],
+          "errors": [],
+          "transport_manifest_sha256": "6fd0596ca965543f794984f0b25263cff1a5fd6ac9cccd53d814c3ce13129be5",
+          "historical_trust": "included_publisher_snapshot_as_of_receipts_not_independent_enrollment"
+        },
+        "status": "verified_bytes_against_reviewer_pin"
+      }
+    }
+  ],
+  "limits": "mechanism test only; no external pin distribution, enrollment, custody or online freshness"
+}

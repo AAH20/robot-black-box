@@ -1,0 +1,21 @@
+import {DatabaseSync} from 'node:sqlite';
+import {mkdirSync,existsSync} from 'node:fs';
+import {join} from 'node:path';
+import {Recorder,atomicWrite} from './index.mjs';
+import {canonical,digest,signed,authenticate} from '../../robot-black-box-contract/src/index.mjs';
+import {verifyBundle} from '../../robot-black-box-verifier/src/index.mjs';
+export class AssuranceService {
+ constructor(root,{key,witness,trustLifecycle,run_id,tenant='tenant-a',interval_ms=1000}){if(!Number.isSafeInteger(interval_ms)||interval_ms<20||interval_ms>60000)throw Error('ASSURANCE_INTERVAL');this.root=root;this.key=key;this.witness=witness;this.lifecycle=trustLifecycle;this.run_id=run_id;this.tenant=tenant;this.interval=interval_ms;mkdirSync(root,{recursive:true,mode:0o700});this.db=new DatabaseSync(join(root,'assurance.sqlite'));this.db.exec('PRAGMA journal_mode=WAL;PRAGMA synchronous=FULL;CREATE TABLE IF NOT EXISTS checks(id INTEGER PRIMARY KEY AUTOINCREMENT,run_id TEXT,record TEXT);');}
+ async run({ticks=3,artifacts={},faultAt=null}={}){if(!Number.isSafeInteger(ticks)||ticks<1||ticks>100)throw Error('ASSURANCE_TICK_BOUND');const results=[];for(let i=0;i<ticks;i++){if(i)await new Promise(r=>setTimeout(r,this.interval));results.push(this.tick({artifacts,fault:faultAt===i}));}return results;}
+ tick({artifacts={},fault=false}={}){
+  const started=Date.now(),received_at=new Date(started).toISOString();let recorder,verification=null,checkpoint=null,error=null;let enrollment={record:{revision:null},freshness:'unknown',trust:null};
+  try{enrollment=this.lifecycle.read();if(enrollment.freshness!=='current')throw Error('STALE_TRUST');if(!enrollment.trust.producers[this.key.keyId]||enrollment.trust.producers[this.key.keyId].revoked)throw Error('PRODUCER_NOT_CURRENT');if(Object.values(enrollment.trust.authorities).some(a=>a.revoked))throw Error('AUTHORITY_REVOKED');
+   recorder=new Recorder({path:join(this.root,'events.sqlite'),key:this.key,run_id:this.run_id,tenant_ref:this.tenant,witness:this.witness,fault:fault?'checkpoint_before_persist':null});checkpoint=recorder.checkpoint();
+   const next=this.db.prepare('SELECT COALESCE(MAX(id),0)+1 n FROM checks').get().n,path=join(this.root,'snapshots',this.run_id+'-'+next);if(existsSync(path))throw Error('ASSURANCE_SNAPSHOT_EXISTS');recorder.export(path,artifacts);verification=verifyBundle(path,enrollment.trust,{latestHeads:this.witness.snapshot()});
+  }catch(e){error=e.message;}finally{recorder?.close();}
+  const record=signed({schema:'rbb.assurance.check.v1',run_id:this.run_id,tenant:this.tenant,received_at,verified_at:new Date().toISOString(),elapsed_ms:Date.now()-started,trust_revision:enrollment.record.revision,trust_freshness:enrollment.freshness,checkpoint_persisted:!!checkpoint,error,verification:verification?((({facts,...r})=>r)(verification)):null,last_verified_head:verification?.integrity==='valid'&&verification.anchoring==='local_current'?checkpoint?.checkpoint.head_digest:null,observation_time:verification?.facts.at(-1)?.observed_at??null,online_source_freshness:'unknown',source_scope:'synthetic replay; current local checking does not establish live sensor freshness',status:error?'incomplete':verification.integrity!=='valid'||verification.anchoring!=='local_current'?'unknown':verification.completeness==='complete'?'locally_verified_replay':'incomplete'},this.key.keyId,this.key.privateKey,'ASSURANCE-CHECK');
+  this.db.prepare('INSERT INTO checks(run_id,record) VALUES(?,?)').run(this.run_id,canonical(record));atomicWrite(join(this.root,'last-check.json'),canonical(record));return record;
+ }
+ status({at=Date.now(),max_age_ms=5000}={}){const row=this.db.prepare('SELECT record FROM checks WHERE run_id=? ORDER BY id DESC LIMIT 1').get(this.run_id),good=this.db.prepare('SELECT record FROM checks WHERE run_id=? ORDER BY id DESC').all(this.run_id).map(x=>JSON.parse(x.record)).find(x=>x.last_verified_head);const last=row?JSON.parse(row.record):null;if(last)authenticate(last,{[this.key.keyId]:this.key},'ASSURANCE-CHECK');if(good)authenticate(good,{[this.key.keyId]:this.key},'ASSURANCE-CHECK');return {last,last_success:good??null,local_verification_freshness:last&&at>=Date.parse(last.verified_at)&&at-Date.parse(last.verified_at)<=max_age_ms?'current':'stale',online_source_freshness:'unknown',scheduled_interval_ms:this.interval};}
+ close(){this.db.close();}
+}
