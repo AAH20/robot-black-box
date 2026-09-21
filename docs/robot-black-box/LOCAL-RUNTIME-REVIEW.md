@@ -9,7 +9,7 @@ This phase replaces a failed Cognee intake probe and one OSS twin declaration wi
 | MuJoCo 3.13.0 | Passive synthetic sphere drop, 1,000 steps at 0.002 seconds; final height 0.09963281815747682 m; one contact; near-zero final vertical velocity | No robot actuation, hardware, human sensing, or sim-to-real assessment. Apache-2.0 engine license; scenario XML is local synthetic input. |
 | Existing LangGraph execution | Historical checkpoint interruption, restoration and approved/denied resumption evidence remains G20 | Its subsequent local thread deletion receipt does not erase historical signed evidence. |
 
-Cognee uses its documented adapter registration mechanism. No installed SDK files were patched. The adapter applies Ladybug's supported connection `home_directory` setting before loading JSON; OS `HOME` is unchanged. The local probe explicitly disables Cognee backend access control because the custom adapter has no registered per-dataset handler. It is single-user synthetic execution only. Existing vault access checks and commercial tenant/purpose authorization remain in place; this does not prove Cognee multi-user isolation.
+Cognee uses its documented adapter registration mechanism. No installed SDK files were patched. The adapter applies Ladybug's supported connection `home_directory` setting before loading JSON; OS `HOME` is unchanged. The local probe explicitly disables Cognee backend access control because the custom adapter has no registered per-dataset handler. It is single-user synthetic execution only. Existing vault access checks and studio tenant/purpose authorization remain in place; this does not prove Cognee multi-user isolation.
 
 Socket connections and dotenv loading are disabled during Cognee execution. Connection tests are skipped for storage-only intake. No locally provisioned LLM/embedding server was available; the local Ollama version probe also aborted during Metal initialization in this environment. `cognify` and semantic `search` remain unexecuted. Installing a new model stack is a remaining provider gate, not an executed retrieval result.
 
@@ -25,11 +25,11 @@ Reproduce from the repository root:
 .rbb/simulation-runtime/bin/python scripts/robot-black-box/simulation-demo.py
 node scripts/robot-black-box/governance-bind-local.mjs
 node scripts/robot-black-box/governance-schema-check.mjs
-node --test scripts/test-robot-black-box.mjs scripts/test-robot-black-box-commercial.mjs scripts/test-robot-black-box-governance.mjs
-RBB_PORT=4320 node packages/robot-black-box-commercial/src/index.mjs .rbb/governance-runtime-commercial .rbb/governance-demo
+node --test scripts/test-robot-black-box.mjs scripts/test-robot-black-box-studio.mjs scripts/test-robot-black-box-governance.mjs
+RBB_PORT=4320 node packages/robot-black-box-studio/src/index.mjs .rbb/governance-runtime-studio .rbb/governance-demo
 ```
 
-Use a fresh intake directory and new run/case identity when repeating execution; immutable run IDs cannot be overwritten. Python dependencies are captured in the Cognee and simulation requirements files under `scripts/robot-black-box`; these are installed-version inventories, not wheel hash locks. Extension installation requires network access once. The commercial console credentials remain private inside `.rbb`.
+Use a fresh intake directory and new run/case identity when repeating execution; immutable run IDs cannot be overwritten. Python dependencies are captured in the Cognee and simulation requirements files under `scripts/robot-black-box`; these are installed-version inventories, not wheel hash locks. Extension installation requires network access once. The local studio credentials remain private inside `.rbb`.
 
 Implementation references: [Cognee supported adapter registration](https://docs.cognee.ai/setup-configuration/community-maintained/falkordb), [Ladybug connection settings](https://docs.ladybugdb.com/cypher/configuration/), [Ladybug extension installation](https://docs.ladybugdb.com/extensions/), [MuJoCo Python bindings](https://mujoco.readthedocs.io/en/stable/python.html), [MuJoCo license](https://github.com/google-deepmind/mujoco/blob/main/LICENSE).
 

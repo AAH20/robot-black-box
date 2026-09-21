@@ -4,13 +4,13 @@ import {mkdtempSync,rmSync} from 'node:fs';
 import {join} from 'node:path';
 import {tmpdir} from 'node:os';
 import {context,replay} from '../packages/robot-black-box-cli/src/index.mjs';
-import {LocalCommercial,server} from '../packages/robot-black-box-commercial/src/index.mjs';
+import {LocalStudio,server} from '../packages/robot-black-box-studio/src/index.mjs';
 import {DEFAULT_POLICY} from '../packages/robot-black-box-policy/src/index.mjs';
 import {authenticate} from '../packages/robot-black-box-contract/src/index.mjs';
 test('local fleet end-to-end identity, isolation, approval, purpose, citations, retention and HTTP auth',async()=>{
- const root=mkdtempSync(join(tmpdir(),'rbb-commercial-'));const execution=join(root,'execution');const ctx=context(join(execution,'custody'));let service,s;
+ const root=mkdtempSync(join(tmpdir(),'rbb-studio-'));const execution=join(root,'execution');const ctx=context(join(execution,'custody'));let service,s;
  try {
-  replay(ctx,{out:join(execution,'cases','H0'),run_id:'demo-H0'});service=new LocalCommercial(join(root,'commercial'),execution);
+  replay(ctx,{out:join(execution,'cases','H0'),run_id:'demo-H0'});service=new LocalStudio(join(root,'studio'),execution);
   const who=(tenant,role)=>service.identities.find(x=>x.tenant===tenant&&x.role===role);const admin=who('tenant-a','admin'),author=who('tenant-a','author'),reviewer=who('tenant-a','reviewer'),investigator=who('tenant-a','investigator'),other=who('tenant-b','admin');
   service.ingest(admin,'H0');assert.equal(service.runs(admin).length,1);assert.equal(service.runs(other).length,0);assert.throws(()=>service.ingest(other,'H0'),/Tenant/);assert.throws(()=>service.run(other,'demo-H0'),/not found/);
   service.policy(author,'handover-v1',DEFAULT_POLICY);assert.throws(()=>service.approve(author,'handover-v1'),/Forbidden/);assert.equal(service.approve(reviewer,'handover-v1').state,'approved');

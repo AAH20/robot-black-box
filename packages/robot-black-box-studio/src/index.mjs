@@ -11,7 +11,7 @@ import {evaluateGovernance,PROFILE} from '../../robot-black-box-governance/src/i
 import {DurableReportStore,reportBytes} from '../../robot-black-box-grc-bridge/src/durable.mjs';
 import {evaluate,DEFAULT_POLICY} from '../../robot-black-box-policy/src/index.mjs';
 import {consolidatedReview,citedExcerpt} from '../../../scripts/robot-black-box/consolidated-review.mjs';
-export class LocalCommercial {
+export class LocalStudio {
  constructor(directory,execution) {
   this.directory=resolve(directory);mkdirSync(this.directory,{recursive:true,mode:0o700});this.key=localKey(join(this.directory,'audit-custody'),'service-audit-local');this.execution=execution;
   this.trust=JSON.parse(readFileSync(join(execution,'custody','trust.json'),'utf8'));this.heads=JSON.parse(readFileSync(join(execution,'custody','witness','latest-heads.json'),'utf8'));
@@ -90,4 +90,4 @@ export function server(service,{port=4318}={}) {
   }catch(err){send(err.status??400,{error:err.message});}
  });
 }
-if(process.argv[1]&&resolve(process.argv[1])===resolve(fileURLToPath(import.meta.url))){const dir=process.argv[2]??'.rbb/commercial';const execution=process.argv[3]??'.rbb/local-demo';const service=new LocalCommercial(dir,execution);const admin=service.identities.find(x=>x.tenant==='tenant-a'&&x.role==='admin');for(let i=0;i<7;i++)service.ingest(admin,`H${i}`);for(let i=0;i<26;i++)if(existsSync(join(execution,'cases','G'+i,'manifest.json')))service.ingest(admin,'G'+i);const port=Number(process.env.RBB_PORT??4318);const s=server(service,{port});s.listen(port,'127.0.0.1',()=>console.log(`Robot Black Box local demo: http://127.0.0.1:${port}; credentials stored privately at ${resolve(dir)}/demo-credentials.json`));for(const sig of ['SIGINT','SIGTERM'])process.on(sig,()=>s.close(()=>{service.close();process.exit(0);}));}
+if(process.argv[1]&&resolve(process.argv[1])===resolve(fileURLToPath(import.meta.url))){const dir=process.argv[2]??'.rbb/studio';const execution=process.argv[3]??'.rbb/local-demo';const service=new LocalStudio(dir,execution);const admin=service.identities.find(x=>x.tenant==='tenant-a'&&x.role==='admin');for(let i=0;i<7;i++)service.ingest(admin,`H${i}`);for(let i=0;i<26;i++)if(existsSync(join(execution,'cases','G'+i,'manifest.json')))service.ingest(admin,'G'+i);const port=Number(process.env.RBB_PORT??4318);const s=server(service,{port});s.listen(port,'127.0.0.1',()=>console.log(`Robot Black Box local studio: http://127.0.0.1:${port}; credentials stored privately at ${resolve(dir)}/demo-credentials.json`));for(const sig of ['SIGINT','SIGTERM'])process.on(sig,()=>s.close(()=>{service.close();process.exit(0);}));}

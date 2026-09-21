@@ -1,5 +1,5 @@
 {
-  "name": "@grc-claw/robot-black-box-commercial",
+  "name": "@grc-claw/robot-black-box-studio",
   "version": "0.1.0",
   "description": "Robot Black Box local synthetic replay prototype; read-only assurance",
   "license": "MIT",

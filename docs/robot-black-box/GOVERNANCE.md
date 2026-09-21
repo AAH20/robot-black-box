@@ -52,11 +52,11 @@ Cognee 1.5.4 is installed separately. The script isolates storage/log roots, dis
 ## Console, exports and GRC bridge
 
 ```bash
-RBB_PORT=4319 node packages/robot-black-box-commercial/src/index.mjs .rbb/my-governance-service .rbb/my-governance
-node scripts/robot-black-box/governance-commercial-demo.mjs .rbb/my-governance .rbb/my-commercial-checks
+RBB_PORT=4319 node packages/robot-black-box-studio/src/index.mjs .rbb/my-governance-service .rbb/my-governance
+node scripts/robot-black-box/governance-studio-demo.mjs .rbb/my-governance .rbb/my-studio-checks
 ```
 
-The commercial execution script requires G20 from the runtime-binding step. Console at `http://127.0.0.1:4319` uses locally generated private bearer credentials in the selected service's `demo-credentials.json`. Run buttons fetch tenant-authorized evidence details with bundle digests, cited events and pointers. `/v1/runs/{id}/bundle?purpose=governance_evaluation` is required for demo-G runs; handover purpose remains required for demo-H runs. The API keeps local roles, independent advisory policy review, cited notes, encrypted managed-copy holds/deletion and audit. Monitoring includes governance exceptions. GRC bridge serializes actual governance report bytes into the existing in-memory evidence store.
+The studio execution script requires G20 from the runtime-binding step. The console at `http://127.0.0.1:4319` uses locally generated private bearer credentials in the selected service's `demo-credentials.json`. Run buttons fetch tenant-authorized evidence details with bundle digests, cited events and pointers. `/v1/runs/{id}/bundle?purpose=governance_evaluation` is required for demo-G runs; handover purpose remains required for demo-H runs. The API keeps local roles, independent advisory policy review, cited notes, encrypted managed-copy holds/deletion and audit. Monitoring includes governance exceptions. GRC bridge serializes actual governance report bytes into the existing in-memory evidence store.
 
 Local context-cache deletion removes selected synthetic entries; simulated vendor acknowledgements do not prove external deletion. Managed-copy deletion deletes its encrypted copy/key and retains original public replay, source vault and immutable signed evidence. These are distinct scopes. No enterprise retention or secure-erasure guarantee is made.
 

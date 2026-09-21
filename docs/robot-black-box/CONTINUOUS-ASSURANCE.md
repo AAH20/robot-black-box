@@ -2,7 +2,7 @@
 
 The executed local workflow schedules checkpoints, journals signed check results across process restarts, rotates a producer into a new single-key run epoch, and commits digest-bound report bytes into SQLite. It checks benign synthetic replay. A recent local verification time never establishes current online sensor freshness.
 
-[Executed operational receipt](../../examples/robot-black-box-governance/executed/operational-assurance-execution.json) records nine scheduled checks across six worker processes, with a 40 ms demonstration interval. [Witnessed G25 binding](../../examples/robot-black-box-governance/executed/operational-binding.json) binds its exact bytes. G25 integrity is valid; its governance result is unknown with ONLINE_SOURCE_FRESHNESS_NOT_OBSERVED. The commercial console displays the operational scope, provenance, result digests and a separate durable report acknowledgement. Existing benchmarks and signed cases are retained.
+[Executed operational receipt](../../examples/robot-black-box-governance/executed/operational-assurance-execution.json) records nine scheduled checks across six worker processes, with a 40 ms demonstration interval. [Witnessed G25 binding](../../examples/robot-black-box-governance/executed/operational-binding.json) binds its exact bytes. G25 integrity is valid; its governance result is unknown with ONLINE_SOURCE_FRESHNESS_NOT_OBSERVED. The local studio displays the operational scope, provenance, result digests and a separate durable report acknowledgement. Existing benchmarks and signed cases are retained.
 
 The first worker checked a two-event partial stream twice. After the remaining events committed, an injected checkpoint persistence failure occurred after the real witness had anchored the head. The failure stayed incomplete; a fresh worker recomputed the same checkpoint and reconciled the witness receipt, persisted it, exported new snapshots and verified the six-event closed run. Every snapshot uses a new path. Later failures preserve a separately reported last successfully verified head. The SQLite journal uses WAL/FULL transactions. This is process-restart recovery, not a physical power-loss qualification or disk-reserve guarantee.
 
@@ -10,7 +10,7 @@ Producer rotation has separate old/new Ed25519 signatures, an authority-signed r
 
 The durable bridge stores exact canonical verification/evaluation/governance report bytes, digest and signed commit receipt in SQLite with WAL/FULL synchronization. It acknowledges only after commit. A real child process exited 99 inside an uncommitted write; a new process found no phantom report, committed once, and later reconnect returned an idempotent receipt and verified bytes. Concurrent-client tests verify a single receipt. Changed bytes under an existing run ID conflict; changed evaluations require a new run/version, rather than rewriting evidence. Tenant, role, purpose, byte-size and digest checks precede storage. Readback/reconciliation verifies the stored digest and receipt. Existing EvidenceStore/envelope output remains an in-memory projection; SQLite is the durable report source in importDurableReport.
 
-Report-copy retention is separate from signed source bundles and source-store retention. Admin-only durable holds block report removal; deletion leaves the original commit/digest receipt and a tombstone, refuses resurrection and makes bytes unavailable through the API. It does not attest secure erasure of SQLite pages, WAL, backups or other copies. Commercial managed artifact retention and durable report retention have separate explicit endpoints; holding one is not a claim that every copy everywhere is held. Original public source bundles, signed envelopes and audit receipts are retained.
+Report-copy retention is separate from signed source bundles and source-store retention. Admin-only durable holds block report removal; deletion leaves the original commit/digest receipt and a tombstone, refuses resurrection and makes bytes unavailable through the API. It does not attest secure erasure of SQLite pages, WAL, backups or other copies. Studio managed-artifact retention and durable-report retention have separate explicit endpoints; holding one is not a claim that every copy everywhere is held. Original public source bundles, signed envelopes and audit receipts are retained.
 
 ## Reproduce and stop
 
@@ -33,7 +33,7 @@ The worker exits after three checks; interrupt it with Ctrl-C to stop earlier. I
 For the local console:
 
 ```sh
-RBB_PORT=4323 node packages/robot-black-box-commercial/src/index.mjs .rbb/governance-operational-commercial .rbb/governance-demo
+RBB_PORT=4323 node packages/robot-black-box-studio/src/index.mjs .rbb/governance-operational-studio .rbb/governance-demo
 ```
 
 SIGINT/SIGTERM close the server/databases. Private demo credentials remain in the service directory. Exporting /v1/runs/:id/bundle?purpose=governance_evaluation commits the immutable report and returns durable_report. Read its stored bytes with GET /v1/runs/:id/durable-report?purpose=governance_evaluation. Admin POST durable-hold accepts purpose and a boolean enabled; POST delete-durable accepts purpose. Wrong tenant/role/purpose and missing reports are refused. No remote deployment, paid service, live vehicle, recognition, surveillance or hardware source is involved.

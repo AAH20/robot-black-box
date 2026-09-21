@@ -1,6 +1,6 @@
 # Robot Black Box: runnable local prototype
 
-This release implements a **synthetic benign-handover replay prototype**, signed evidence and an offline verifier, deterministic authorization checks, a GRC_Claw reporting bridge, an optional local commercial-service demonstration, and two rendered Remotion videos. It does not operate hardware, perform NVIDIA inference, certify safety or provide enterprise custody.
+This release implements a **synthetic benign-handover replay prototype**, signed evidence and an offline verifier, deterministic authorization checks, a GRC_Claw reporting bridge, an optional local reviewer studio, an Iceberg projection contract, and two rendered Remotion videos. It does not operate hardware, perform NVIDIA inference, certify safety or provide enterprise custody.
 
 ## Review the executed delivery
 
@@ -32,7 +32,7 @@ node scripts/robot-black-box/execute.mjs .rbb/my-execution
 
 The execution command generates seven showcase cases, 350 benchmark trials (50 seeds each), custody keys, public trust and witness heads, reports, a content-bearing GRC bridge import and execution.json. Choose a new output directory for another measurement run: existing execution/run IDs are deliberately not overwritten. Timings vary; signatures/ingestion/witness timestamps and keys are intentionally not deterministic. Scenario semantics and expected label outcomes are reproducible. There is no trained model or claimed held-out ML evaluation.
 
-Tests include real process termination inside a SQLite transaction, restart rollback, conflicting duplicates, sequence/order mutations, bounded-spool failure, untrusted/revoked signer, separate authority authentication, unavailable artifacts, local witness fork/rollback rejection, expiry/config/gap/clock cases, commercial roles/tenant isolation/purpose/citations/holds/deletion, signed audit chain and authenticated loopback HTTP. Restricted environments must permit loopback port binding for HTTP tests.
+Tests include real process termination inside a SQLite transaction, restart rollback, conflicting duplicates, sequence/order mutations, bounded-spool failure, untrusted/revoked signer, separate authority authentication, unavailable artifacts, local witness fork/rollback rejection, expiry/config/gap/clock cases, studio roles/tenant isolation/purpose/citations/holds/deletion, Iceberg projection reconciliation, signed audit chain and authenticated loopback HTTP. Restricted environments must permit loopback port binding for HTTP tests.
 
 ## Individual replay and offline verification
 
@@ -47,16 +47,16 @@ CLI verify exits 0 for valid retained evidence within scope, 2 invalid, 3 unknow
 
 The verifier package imports only the contract and Node crypto/fs/path. It has no recorder, SQLite, GRC_Claw, network, AI, renderer or private-key dependency. The combined CLI imports replay components too; direct verifier package use does not. Python/OpenSSL provides a second implementation for these ASCII/integer local bundle vectors; it explicitly refuses broader JSON profiles rather than guessing canonicalization.
 
-## Local commercial demonstration
+## Local reviewer studio
 
 ```bash
-node scripts/robot-black-box/commercial-demo.mjs .rbb/local-demo .rbb/my-commercial-execution
-node packages/robot-black-box-commercial/src/index.mjs .rbb/commercial .rbb/local-demo
+node scripts/robot-black-box/studio-demo.mjs .rbb/local-demo .rbb/my-studio-execution
+node packages/robot-black-box-studio/src/index.mjs .rbb/studio .rbb/local-demo
 ```
 
 Console: `http://127.0.0.1:4318`. Use `RBB_PORT` to select another loopback port. Credentials are generated randomly in the private `demo-credentials.json` inside the selected service directory; copy a chosen tenant/role token into the console password field. Do not publish that file. No credentials appear in video inputs or public sample bundles. The service uses local bearer identity, not enterprise SSO.
 
-The console reviews runs and exceptions. API demonstrates ingestion of the seven pre-generated cases, policy draft/independent approval, cited human notes, purpose-limited export, retention request/hold/managed-copy deletion, and monitoring. CLI commercial-demo executes all of these plus a signed tenant-scoped SQLite metadata snapshot and read-only restore/digest check. Invalid evidence is retained as an exception, not upgraded to trusted facts. Tenant B sees no Tenant A runs and cannot export them.
+The studio reviews runs and exceptions. Its API demonstrates ingestion of the seven pre-generated cases, policy draft/independent approval, cited human notes, purpose-limited export, retention request/hold/managed-copy deletion, and monitoring. The studio demo executes all of these plus a signed tenant-scoped SQLite metadata snapshot and read-only restore/digest check. Invalid evidence is retained as an exception, not upgraded to trusted facts. Tenant B sees no Tenant A runs and cannot export them.
 
 | Endpoint | Body/query | Meaning |
 | --- | --- | --- |

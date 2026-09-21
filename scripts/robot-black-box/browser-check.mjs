@@ -2,7 +2,7 @@ import {readFileSync} from 'node:fs';
 import {spawnSync} from 'node:child_process';
 import {resolve} from 'node:path';
 const binary=resolve('../a2zsoc-promo/node_modules/.bin/agent-browser');
-const credentials=JSON.parse(readFileSync(resolve(process.argv[2]??'.rbb/commercial','demo-credentials.json'),'utf8'));const token=credentials.find(x=>x.tenant==='tenant-a'&&x.role==='investigator').token;
+const credentials=JSON.parse(readFileSync(resolve(process.argv[2]??'.rbb/studio','demo-credentials.json'),'utf8'));const token=credentials.find(x=>x.tenant==='tenant-a'&&x.role==='investigator').token;
 function run(args){const r=spawnSync(binary,['--session','rbb-local',...args],{encoding:'utf8'});if(r.status!==0)throw Error(r.stderr||'Browser command failed');console.log(r.stdout.trim());}
 run(['open','http://127.0.0.1:'+(process.argv[3]??'4318')]);run(['snapshot','-i']);run(['fill','@e2',token]);run(['click','@e3']);run(['wait','--load','networkidle']);run(['snapshot','-i']);
 run(['eval',`JSON.stringify({content:document.body.innerText.length,rows:document.querySelectorAll('#rows tr').length,error:document.querySelector('#status').classList.contains('error'),overlay:!!document.querySelector('[data-nextjs-dialog],.vite-error-overlay')})`]);
