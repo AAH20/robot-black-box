@@ -150,29 +150,22 @@ A valid signature proves that enrolled key material authenticated specific bytes
 ## Evidence lifecycle
 
 ```mermaid
-sequenceDiagram
-  autonumber
-  participant S as Source or simulator
-  participant A as Passive adapter
-  participant R as Recorder
-  participant W as Witness role
-  participant V as Offline verifier
-  participant P as Policy evaluator
-  participant I as Investigator
-  participant L as Iceberg projection
+flowchart TD
+  SOURCE[1. Source or simulator emits a retained observation]
+  ADAPTER[2. Passive adapter adds provenance]
+  RECORD[3. Recorder validates and commits transactionally]
+  SIGN[4. Recorder signs the event and chains the previous digest]
+  WITNESS[5. Witness receives a signed checkpoint and returns a receipt]
+  PACKAGE[6. Exporter builds a portable evidence package]
+  VERIFY[7. Offline verifier checks schemas, identities, signatures, order and artifacts]
+  FACTS[8. Verifier reports trusted facts and explicit limitations]
+  POLICY[9A. Policy evaluator reaches a separate authorization conclusion]
+  PROJECT[9B. Iceberg projection binds analytical rows to source digests]
+  REVIEW[10. Investigator reviews evidence, conclusions and reconciliation]
 
-  S->>A: Retained observation or declared event
-  A->>R: Canonical event input
-  R->>R: Validate schema and append transactionally
-  R->>R: Sign event and chain previous digest
-  R->>W: Signed checkpoint
-  W-->>R: Witness receipt
-  R->>V: Manifest events artifacts checkpoints
-  V->>V: Verify schema identity signatures order and artifacts
-  V-->>P: Trusted facts plus explicit limitations
-  P-->>I: Separate authorization and outcome conclusions
-  V->>L: Deterministic rows bound to source digests
-  L-->>I: Reconciled analytical snapshot
+  SOURCE --> ADAPTER --> RECORD --> SIGN --> WITNESS --> PACKAGE --> VERIFY --> FACTS
+  FACTS --> POLICY --> REVIEW
+  FACTS --> PROJECT --> REVIEW
 ```
 
 ## Quick start

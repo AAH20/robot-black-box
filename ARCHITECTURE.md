@@ -112,30 +112,25 @@ No plane can silently substitute for another. A model proposal is not a grant, a
 ## 3. Capture and commit sequence
 
 ```mermaid
-sequenceDiagram
-  autonumber
-  participant S as Source
-  participant A as Adapter
-  participant R as Recorder
-  participant DB as SQLite spool
-  participant W as Witness role
-  participant E as Exporter
+flowchart TD
+  SOURCE[1. Source produces an observation or declared event]
+  ADAPTER[2. Adapter structures the input and provenance]
+  VALIDATE[3. Recorder validates the bounded schema]
+  CANONICAL[4. Recorder canonicalizes the body and calculates its digest]
+  SIGN[5. Recorder signs in the RBB-EVENT-v1 domain]
+  BEGIN[6. SQLite spool begins a transaction]
+  APPEND[7. Append the next sequence and previous digest]
+  COMMIT{8. Transaction commits}
+  NOACK[No durable acknowledgement; recover and retry]
+  ACK[9. Adapter receives a durable local acknowledgement]
+  CHECKPOINT[10. Recorder creates a signed checkpoint]
+  WITNESS[11. Witness rejects forks or rollback and signs a receipt]
+  EXPORT[12. Exporter receives events, artifacts and receipts]
+  MANIFEST[13. Exporter builds and signs the portable manifest]
 
-  S->>A: Observation or declared event
-  A->>R: Structured input and provenance
-  R->>R: Validate bounded schema
-  R->>R: Canonicalize body and calculate digest
-  R->>R: Sign event in domain RBB-EVENT-v1
-  R->>DB: Begin transaction
-  R->>DB: Append next sequence and previous digest
-  DB-->>R: Commit acknowledgement
-  R-->>A: Durable local acknowledgement
-  R->>W: Signed checkpoint
-  W->>W: Reject fork or rollback
-  W-->>R: Signed receipt
-  R->>E: Events artifacts and receipts
-  E->>E: Build and sign manifest
-  E-->>S: Portable bundle path
+  SOURCE --> ADAPTER --> VALIDATE --> CANONICAL --> SIGN --> BEGIN --> APPEND --> COMMIT
+  COMMIT -->|no| NOACK
+  COMMIT -->|yes| ACK --> CHECKPOINT --> WITNESS --> EXPORT --> MANIFEST
 ```
 
 The recorder does not acknowledge a write before SQLite commits. Tests exercise process exit before commit, restart recovery, idempotent retry and conflicting duplicate rejection.
@@ -239,27 +234,22 @@ The reference implementation separates roles and processes but runs them on one 
 ## 7. Policy and consequence separation
 
 ```mermaid
-sequenceDiagram
-  participant Agent
-  participant Recorder
-  participant Policy
-  participant Authority
-  participant Adapter
-  participant Environment
+flowchart TD
+  PROPOSAL[Agent submits a proposal with its intended effect]
+  RECORD[Recorder preserves the proposal and current context]
+  POLICY[Policy service evaluates the verified proposal]
+  AUTHORITY[Authority validates grant scope, expiry and preconditions]
+  RESULT{Authority result}
+  CONTROL[Recorder preserves an attributable control result]
+  COMMAND[Policy emits a narrowly authorized command]
+  ADAPTER[Consequence adapter attempts the effect]
+  ENVIRONMENT[Independent observation records the outcome]
+  REFUSE[Agent must refuse, abstain or escalate]
+  PRESERVE[Recorder preserves the denial and missing evidence]
 
-  Agent->>Recorder: PROPOSAL with intended effect
-  Recorder->>Policy: Verified proposal and current context
-  Policy->>Authority: Validate grant scope expiry and preconditions
-  Authority-->>Policy: pass fail or unknown
-  Policy-->>Recorder: Signed or attributable control result
-  alt allowed
-    Policy->>Adapter: Narrow authorized command
-    Adapter->>Environment: Attempt effect
-    Environment-->>Recorder: Independent observation and outcome
-  else denied or unknown
-    Policy-->>Agent: Refuse abstain or escalate
-    Recorder->>Recorder: Preserve denial and missing evidence
-  end
+  PROPOSAL --> RECORD --> POLICY --> AUTHORITY --> RESULT
+  RESULT -->|pass| CONTROL --> COMMAND --> ADAPTER --> ENVIRONMENT --> PRESERVE
+  RESULT -->|fail or unknown| CONTROL --> REFUSE --> PRESERVE
 ```
 
 The current public demonstrations evaluate recorded synthetic actions. They do not provide a live hardware interlock.
