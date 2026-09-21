@@ -1,0 +1,70 @@
+{
+  "schema": "rbb.conformance-profile.v1",
+  "profile_id": "rbb-reference-local-v1",
+  "implementation": "Robot Black Box public reference monorepo",
+  "protocol_version": "0.1.0",
+  "event_schema_version": "1.0.0-local.1",
+  "assessed_at": "2026-09-21T00:00:00Z",
+  "capabilities": [
+    {
+      "id": "canonical-wire-format",
+      "status": "demonstrated",
+      "evidence": ["packages/robot-black-box-contract/src/index.mjs", "scripts/test-robot-black-box.mjs"],
+      "limitations": ["The public profile accepts bounded synthetic event types rather than arbitrary production payloads."]
+    },
+    {
+      "id": "transactional-local-recording",
+      "status": "demonstrated",
+      "evidence": ["packages/robot-black-box-recorder/src/index.mjs", "scripts/test-robot-black-box.mjs"],
+      "limitations": ["The recorder uses a local SQLite store and does not establish multi-region durability."]
+    },
+    {
+      "id": "portable-offline-verification",
+      "status": "demonstrated",
+      "evidence": ["packages/robot-black-box-verifier/src/index.mjs", "docs/robot-black-box/PORTABLE-INVESTIGATION.md"],
+      "limitations": ["Historical demonstration pins are supplied with the fixture and are not independent enrollment."]
+    },
+    {
+      "id": "capture-quality-diagnostics",
+      "status": "demonstrated",
+      "evidence": ["packages/robot-black-box-verifier/src/capture-quality.mjs", "docs/robot-black-box/CAPTURE-QUALITY.md"],
+      "limitations": ["Published cases use synthetic or retained simulation inputs rather than calibrated physical sensors."]
+    },
+    {
+      "id": "same-host-custody-and-recovery",
+      "status": "limited",
+      "evidence": ["docs/robot-black-box/CUSTODY-BACKUP-RECOVERY.md", "docs/robot-black-box/REVIEWER-CHECKPOINT.md"],
+      "limitations": ["Roles, keys and retained copies remain on one host and do not demonstrate independent custody or media-loss recovery."]
+    },
+    {
+      "id": "iceberg-analytical-projection",
+      "status": "limited",
+      "evidence": ["packages/robot-black-box-iceberg/src/index.mjs", "docs/robot-black-box/ICEBERG-PROJECTION.md"],
+      "limitations": ["No catalog, object store, stream processor or query engine is deployed by the public reference profile."]
+    },
+    {
+      "id": "grc-claw-compatibility-bridge",
+      "status": "limited",
+      "evidence": ["packages/robot-black-box-grc-bridge/src/index.mjs", "GRC-CLAW-INTEGRATION.md"],
+      "limitations": ["The bridge maps local evidence interfaces and does not prove hosted synchronization or regulatory compliance."]
+    },
+    {
+      "id": "independent-remote-custody",
+      "status": "not_demonstrated",
+      "evidence": [],
+      "limitations": ["Requires separately administered trust, storage, timestamping and recovery infrastructure."]
+    },
+    {
+      "id": "live-hardware-capture-and-enforcement",
+      "status": "not_demonstrated",
+      "evidence": [],
+      "limitations": ["The repository ships no actuator control, safety interlock or qualified physical-hardware integration."]
+    },
+    {
+      "id": "aviation-or-functional-safety-certification",
+      "status": "not_demonstrated",
+      "evidence": [],
+      "limitations": ["No aviation, product-safety or functional-safety certification claim is made."]
+    }
+  ]
+}

@@ -9,12 +9,14 @@
   },
   "scripts": {
     "build": "node scripts/robot-black-box-monorepo-build.mjs",
-    "test": "node --test scripts/test-robot-black-box.mjs scripts/test-robot-black-box-studio.mjs scripts/test-robot-black-box-iceberg.mjs scripts/test-robot-black-box-capture-quality.mjs scripts/test-robot-black-box-portable.mjs scripts/test-robot-black-box-bootstrap.mjs scripts/test-robot-black-box-custody.mjs scripts/test-robot-black-box-backup.mjs scripts/test-robot-black-box-recovery-trust.mjs scripts/test-robot-black-box-reviewer-state.mjs scripts/test-robot-black-box-reviewer-checkpoint.mjs scripts/test-robot-black-box-consolidated-review.mjs scripts/test-robot-black-box-simulation-capture.mjs",
+    "test": "node --test scripts/test-robot-black-box.mjs scripts/test-robot-black-box-studio.mjs scripts/test-robot-black-box-iceberg.mjs scripts/test-robot-black-box-capture-quality.mjs scripts/test-robot-black-box-portable.mjs scripts/test-robot-black-box-bootstrap.mjs scripts/test-robot-black-box-custody.mjs scripts/test-robot-black-box-backup.mjs scripts/test-robot-black-box-recovery-trust.mjs scripts/test-robot-black-box-reviewer-state.mjs scripts/test-robot-black-box-reviewer-checkpoint.mjs scripts/test-robot-black-box-consolidated-review.mjs scripts/test-robot-black-box-simulation-capture.mjs scripts/test-conformance-profile.mjs",
     "demo": "node scripts/robot-black-box-release-demo.mjs",
     "review": "node scripts/robot-black-box/consolidated-review.mjs",
     "verify:portable": "node scripts/robot-black-box/portable-bootstrap.mjs examples/robot-black-box-portable/executed/review-package 6fd0596ca965543f794984f0b25263cff1a5fd6ac9cccd53d814c3ce13129be5",
+    "conformance": "node scripts/validate-conformance-profile.mjs conformance/reference-local-v1.json",
     "build:core": "node scripts/robot-black-box-monorepo-build.mjs --core-only",
-    "build:grc-bridge": "node scripts/robot-black-box-release-build.mjs"
+    "build:grc-bridge": "node scripts/robot-black-box-release-build.mjs",
+    "test:conformance": "node --test scripts/test-conformance-profile.mjs"
   },
   "description": "Standalone verifiable incident evidence for passive physical AI and agent workflows; optional GRC Claw bridge",
   "workspaces": [

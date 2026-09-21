@@ -1,0 +1,9 @@
+.git
+.github
+.rbb
+node_modules
+npm-debug.log
+coverage
+*.pem
+*.key
+*.sqlite*

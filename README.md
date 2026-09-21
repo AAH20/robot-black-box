@@ -37,6 +37,7 @@ Robot Black Box makes those questions explicit and machine-testable.
 - [Validation status](#validation-status)
 - [Security and privacy boundaries](#security-and-privacy-boundaries)
 - [Development and roadmap](#development)
+- [Production adoption](#production-adoption)
 - [Documentation](#documentation)
 
 ## Architecture at a glance
@@ -431,6 +432,28 @@ npm test
 
 Useful focused commands are documented in [docs/robot-black-box/RUNNING.md](docs/robot-black-box/RUNNING.md). Contributions should include a concrete failure fixture and an independently checkable expected result when they change a trust, evidence or policy boundary.
 
+## Production adoption
+
+The repository publishes a [protocol specification](SPECIFICATION.md),
+[compatibility policy](COMPATIBILITY.md) and machine-readable
+[reference conformance profile](conformance/reference-local-v1.json). Validate
+the claim structure and every cited evidence path with:
+
+```bash
+npm run conformance
+```
+
+Run the containerized demonstration with a read-only root filesystem, dropped
+Linux capabilities and an isolated runtime volume:
+
+```bash
+docker compose up --build --abort-on-container-exit
+```
+
+Engineering, integration, commercial packaging and unit-economics gates are in
+the [production adoption roadmap](docs/robot-black-box/PRODUCTION-ADOPTION-ROADMAP.md).
+Its measurements are targets, not production, certification or SLA claims.
+
 ## Project status and roadmap
 
 The current release is a developer preview. Near-term public work should prioritize:
@@ -448,6 +471,9 @@ Production claims require evidence beyond this repository: live hardware qualifi
 ## Documentation
 
 - [Detailed architecture](ARCHITECTURE.md)
+- [Protocol specification](SPECIFICATION.md)
+- [Compatibility policy](COMPATIBILITY.md)
+- [Production adoption roadmap](docs/robot-black-box/PRODUCTION-ADOPTION-ROADMAP.md)
 - [Open-core boundary](OPEN-CORE-BOUNDARY.md)
 - [GRC Claw integration](GRC-CLAW-INTEGRATION.md)
 - [Iceberg projection](docs/robot-black-box/ICEBERG-PROJECTION.md)
